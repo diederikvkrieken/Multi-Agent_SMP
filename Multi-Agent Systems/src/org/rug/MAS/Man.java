@@ -16,5 +16,16 @@ public class Man extends Person {
 		// TODO Auto-generated constructor stub
 		super(name, pref, states);
 	}
+	
+	public Man(String name, String[] pref) {
+		// TODO Auto-generated constructor stub
+		super(name, pref);
+	}
+	
+	public Man(String name) {
+		// TODO Auto-generated constructor stub
+		super(name);
+	}
+	
 
 }

@@ -16,5 +16,9 @@ public class Woman extends Person {
 		// TODO Auto-generated constructor stub
 		super(name, pref, states);
 	}
+	public Woman(String name) {
+		// TODO Auto-generated constructor stub
+		super(name);
+	}
 
 }

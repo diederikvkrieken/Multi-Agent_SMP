@@ -3,6 +3,9 @@
  */
 package org.rug.MAS;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Initializer contains methods for the random initialization of an SMP.
  * @author Diederik, Sebastiaan, Pieter
@@ -13,16 +16,21 @@ public class Initializer {
 	/**
 	 * All 'random' names.
 	 */
-	private String[] names = {"Adam", "Alice", "Beatrice", "Cleopatra", "Eve",
-			"Willy", "Xerxes", "Zorro"};
+	private static String[] namesWomen = {"Alice", "Beatrice", "Cleopatra", "Eve"};
+	private static String[] namesMen = {"Willy", "Yannick", "Xerxes", "Zorro"};
 	
 	/**
 	 * Initializes n men.
 	 * @param n
 	 * @return n randomly initialized men.
 	 */
-	public Man[] initializeMen(int n) {
+	public static Man[] initializeMen(int n) {
 		//TODO Something to initialize men.
+		Man[] men= new Man[4];
+		for (int i = 0; i < n; i++) {
+			men[i] = new Man(namesMen[i]);
+		}
+		return men;		
 	}
 
 	/**
@@ -30,8 +38,13 @@ public class Initializer {
 	 * @param n
 	 * @return n randomly initialized women.
 	 */
-	public Woman[] initializeWomen(int n) {
+	public static Woman[] initializeWomen(int n) {
 		//TODO Something to initialize women.
+		Woman[] women = new Woman[4];
+		for (int i = 0; i < n; i++) {
+			women[i] = new Woman(namesWomen[i]);
+		}
+		return women;
 	}
 	
 	/**
@@ -39,7 +52,18 @@ public class Initializer {
 	 * @param people
 	 * @return All people with randomized preferences.
 	 */
-	public Person[] initializePreferences(Person[] people) {
+	public static Person[] initializePreferences(Person[] people, int n) {
 		//TODO Something to initialize preferences.
+		if (people[0] instanceof Man) {
+			for (int i = 0; i < n; i++) {
+				people[i] = new Man(people[i].getName(), Collections.shuffle(Arrays.asList(namesWomen)).toArray()); 
+			}
+			return people;
+		}else{
+			for (int i = 0; i < n; i++) {
+				people[i] = new Woman(people[i].getName(), Arrays.toString(Collections.shuffle(Arrays.asList(namesWomen)))); 
+			}
+			return people;
+		}
 	}
 }

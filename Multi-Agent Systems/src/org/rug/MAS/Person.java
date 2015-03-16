@@ -37,8 +37,21 @@ public abstract class Person {
 		this.states = states;
 	}
 	
+	public Person(String name, String[] preferences) {
+		this.name = name;
+		this.preferences = preferences;
+	}
+	
+	public Person(String name) {
+		this.name = name;
+	}
+	
 	// Getters and setters
 	public String getName() {
 		return this.name;
+	}
+	
+	public String getPreferences() {
+		return this.preferences;
 	}
 }

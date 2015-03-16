@@ -27,7 +27,7 @@ public class SMP {
 		boolean init = true;	// True as long as initialization is still going on
 		String in;				// Holder for input string
 		int num;				// SMP n
-		while (init) {
+		/*while (init) {
 			System.out.println("For which n would you like to simulate the Stable Marriage Problem?");
 			try {
 				num = Integer.parseInt(input.next());
@@ -44,7 +44,7 @@ public class SMP {
 								while (num > 0) {
 									System.out.println(num + " more to go...");
 									in = input.next();
-									while (/* in does not conform format */) {
+									while (/* in does not conform format *//*) {
 										System.out.println("Please use the format (name, gender)");
 										in = input.next();
 									}
@@ -67,8 +67,21 @@ public class SMP {
 			} catch (NumberFormatException e) {
 				System.out.println("Please input an integer between 1 and 10.");
 			}
-		}
-
+		}*/
+		num = 4;
+		Man[] men = Initializer.initializeMen(num);
+		Woman[] women = Initializer.initializeWomen(num);
+		
+		System.out.println(men[1].getName());
+		System.out.println(women[1].getName());
+		
+		men = (Man[]) Initializer.initializePreferences(men, num);
+		System.out.println("test");
+		women = (Woman[]) Initializer.initializePreferences(men, num);
+		
+		System.out.println(men[1].getPreferences());
+		System.out.println(women[1].getPreferences());
+			
 		//TODO Running the problem
 		boolean terminate = false;	//whether or not to exit
 		//TODO here the big for loop to rule them all

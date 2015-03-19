@@ -56,12 +56,16 @@ public class Initializer {
 		//TODO Something to initialize preferences.
 		if (people[0] instanceof Man) {
 			for (int i = 0; i < n; i++) {
-				people[i] = new Man(people[i].getName(), Collections.shuffle(Arrays.asList(namesWomen)).toArray()); 
+				String[] shuffle = namesWomen;
+				Collections.shuffle(Arrays.asList(shuffle));
+				people[i] = new Man(people[i].getName(), shuffle); 
 			}
 			return people;
 		}else{
 			for (int i = 0; i < n; i++) {
-				people[i] = new Woman(people[i].getName(), Arrays.toString(Collections.shuffle(Arrays.asList(namesWomen)))); 
+				String[] shuffle = namesMen;
+				Collections.shuffle(Arrays.asList(shuffle));
+				people[i] = new Woman(people[i].getName(), shuffle); 
 			}
 			return people;
 		}

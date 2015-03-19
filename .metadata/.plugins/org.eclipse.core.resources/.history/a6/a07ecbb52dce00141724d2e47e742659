@@ -77,11 +77,9 @@ public class SMP {
 		System.out.println(men[1].getName());
 		System.out.println(women[1].getName());
 		//
-		men = (Man[]) Initializer.initializePreferences(men, num);
-		women = (Woman[]) Initializer.initializePreferences(women, num);
+		System.out.println("test");
 		String[] pref = men[1].getPreferences();
-
-		
+		System.out.println(pref[1]);
 		//TODO Running the problem
 		boolean terminate = false;	//whether or not to exit
 		//TODO here the big for loop to rule them all

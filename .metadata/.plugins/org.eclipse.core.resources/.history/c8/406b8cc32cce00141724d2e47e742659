@@ -3,8 +3,6 @@
  */
 package org.rug.MAS;
 
-import java.util.Arrays;
-import java.util.Collections;
 /*
  * Imports for input,
  */
@@ -76,12 +74,17 @@ public class SMP {
 		
 		System.out.println(men[1].getName());
 		System.out.println(women[1].getName());
-		//
-		men = (Man[]) Initializer.initializePreferences(men, num);
-		women = (Woman[]) Initializer.initializePreferences(women, num);
-		String[] pref = men[1].getPreferences();
-
 		
+		
+		String[] namesMen = {"Willy", "Yannick", "Xerxes", "Zorro"};
+
+		men = (Man[]) Initializer.initializePreferences(men, num);
+		System.out.println("test");
+		women = (Woman[]) Initializer.initializePreferences(men, num);
+		
+		System.out.println(men[1].getPreferences());
+		System.out.println(women[1].getPreferences());
+			
 		//TODO Running the problem
 		boolean terminate = false;	//whether or not to exit
 		//TODO here the big for loop to rule them all

@@ -51,7 +51,7 @@ public abstract class Person {
 		return this.name;
 	}
 	
-	public String[] getPreferences() {
+	public String getPreferences() {
 		return this.preferences;
 	}
 }

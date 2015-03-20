@@ -3,12 +3,12 @@
  */
 package org.rug.MAS;
 
+import java.util.ArrayList;
 /*
  * Imports for input,
  */
 import java.util.Scanner;
-//import java.util.Arrays;
-//import java.util.Collections;
+
 
 /**
  * @author Diederik, Sebastiaan & Pieter
@@ -98,6 +98,10 @@ public class SMP {
 //		}
 		
 		//System.out.print(pref[0]+pref[1]+pref[2]+pref[3]);
+		
+		for (ArrayList<State> layer : smp.getStates()) {
+			System.out.println(layer.get(0));
+		}
 		
 		//TODO Running the problem
 		boolean terminate = false;	//whether or not to exit

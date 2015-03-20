@@ -36,10 +36,14 @@ public class Model {
 	 * @param n
 	 */
 	public Model(int n) {
+		// Initialize initializer
 		Initializer init = new Initializer();
+		
+		// Initialize people
 		this.men = init.initializeMen(n);
 		this.women = init.initializeWomen(n);
 		
+		// Initialize preferences
 		Person[] people = init.initializePreferences(men, women);
 		ArrayList<Man> m = new ArrayList<Man>();
 		ArrayList<Woman> w = new ArrayList<Woman>();
@@ -52,6 +56,9 @@ public class Model {
 		}
 		this.men = m.toArray(new Man[n]);
 		this.women = w.toArray(new Woman[n]);
+		
+		// Initialize states
+		this.states = init.initializeStates(men, women);
 	}
 	
 	/**

@@ -106,12 +106,12 @@ public class Initializer {
 	 * @return All states.
 	 */
 	public ArrayList<ArrayList<State>> initializeStates(Man[] men, Woman[] women) {
-		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(men.length); // empty state list
+		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(); // empty state list
 		
 		// Zeroth layer only contains one state
 		LinkedList<State> layer = new LinkedList<State>();
 		layer.add(new State(new Engagement[0]));
-		states.set(0, new ArrayList<State>(layer));
+		states.add(new ArrayList<State>(layer));
 		// Make states for each subsequent layer
 		for (int l = 1; l <= men.length; l++) {
 			layer = new LinkedList<State>();	// States in current layer
@@ -145,7 +145,7 @@ public class Initializer {
 				}
 				layer = newStates;	// Layer becomes next stage in queue
 			}
-			states.set(l, new ArrayList<State>(layer));
+			states.add(new ArrayList<State>(layer));
 		}
 		
 		return states;

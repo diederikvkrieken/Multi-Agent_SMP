@@ -33,8 +33,10 @@ public class State {
 	 * @return True if a is engaged
 	 */
 	public boolean isEngaged(String a) {
-		for (Engagement r : relations) {
-			if (r.isEngaged(a)) return true;
+		if (relations.length != 0) {
+			for (Engagement r : relations) {
+				if (r != null && r.isEngaged(a)) return true;
+			}
 		}
 		return false;
 	}
@@ -46,8 +48,10 @@ public class State {
 	 * @return True if a and b are engaged
 	 */
 	public boolean areEngaged(String a, String b) {
-		for (Engagement r : relations) {
-			if (r.areEngaged(a, b)) return true;
+		if (relations.length != 0) {
+			for (Engagement r : relations) {
+				if (r != null && r.areEngaged(a, b)) return true;
+			}
 		}
 		return false;
 	}

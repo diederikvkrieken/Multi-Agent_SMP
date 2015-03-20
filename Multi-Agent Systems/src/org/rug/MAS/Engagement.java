@@ -40,7 +40,7 @@ public class Engagement {
 	 * @return True if the person is in this engagement.
 	 */
 	public boolean isEngaged(String name) {
-		if (name == this.dude.getName() || name == this.chick.getName()) return true;
+		if (name.equals(this.dude.getName()) || name.equals(this.chick.getName())) return true;
 		else return false;
 	}
 	
@@ -52,7 +52,7 @@ public class Engagement {
 	 * @return True if m and w are engaged.
 	 */
 	public boolean areEngaged(String m, String w) {
-		if (m == this.dude.getName() && w == this.chick.getName()) return true;
+		if (m.equals(this.dude.getName()) && w.equals(this.chick.getName())) return true;
 		else return false;
 	}
 

@@ -75,25 +75,27 @@ public class SMP {
 			}
 		}*/
 		num = 4;
-		Man[] men = Initializer.initializeMen(num);
-		Woman[] women = Initializer.initializeWomen(num);
+		
+		Model smp = new Model(num);
+//		Man[] men = Initializer.initializeMen(num);
+//		Woman[] women = Initializer.initializeWomen(num);
 		
 		//System.out.println(men[1].getName());
 		//System.out.println(women[1].getName());
 		
-		Person[] people = Initializer.initializePreferences(men, women); 
+//		Person[] people = Initializer.initializePreferences(men, women); 
 //		men = (Man[]) Initializer.initializePreferences(men, num);
 //		women = (Woman[]) Initializer.initializePreferences(women, num);
 		//String[] pref = men[1].getPreferences();
-		String Woman1 = people[5].name.toString();
-		System.out.println(Woman1);
+//		String Woman1 = people[5].name.toString();
+//		System.out.println(Woman1);
 		
-		Engagement[] rel=null;
-		for (int i = 0; i < num; i++) {
-			for (int j = num; j < people.length; j++) {
-				rel.engagement(people[i],people[j]);
-			}
-		}
+//		Engagement[] rel=null;
+//		for (int i = 0; i < num; i++) {
+//			for (int j = num; j < people.length; j++) {
+//				rel.engagement(people[i],people[j]);
+//			}
+//		}
 		
 		//System.out.print(pref[0]+pref[1]+pref[2]+pref[3]);
 		

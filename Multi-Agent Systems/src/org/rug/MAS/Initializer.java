@@ -17,19 +17,19 @@ public class Initializer {
 	/**
 	 * All 'random' names of women.
 	 */
-	private static String[] namesWomen = {"Alice", "Beatrice", "Cleopatra", "Eve"};
+	private String[] namesWomen = {"Alice", "Beatrice", "Cleopatra", "Eve"};
 	
 	/**
 	 * All 'random' names of men.
 	 */
-	private static String[] namesMen = {"Willy", "Xerxes", "Yannick", "Zorro"};
+	private String[] namesMen = {"Willy", "Xerxes", "Yannick", "Zorro"};
 	
 	/**
 	 * Initializes n men. Also assures there are no similar names.
 	 * @param n
 	 * @return n randomly initialized men.
 	 */
-	public static Man[] initializeMen(int n) {
+	public Man[] initializeMen(int n) {
 		//TODO Something to initialize men.
 		Man[] men = new Man[n];
 		for (int i = 0; i < n; i++) {
@@ -43,7 +43,7 @@ public class Initializer {
 	 * @param n
 	 * @return n randomly initialized women.
 	 */
-	public static Woman[] initializeWomen(int n) {
+	public Woman[] initializeWomen(int n) {
 		//TODO Something to initialize women.
 		Woman[] women = new Woman[n];
 		for (int i = 0; i < n; i++) {
@@ -57,7 +57,7 @@ public class Initializer {
 	 * @param people
 	 * @return All people with randomized preferences.
 	 */
-	public static Person[] initializePreferences(Man[] men, Woman[] women) {
+	public Person[] initializePreferences(Man[] men, Woman[] women) {
 		// Lists for names and resulting array of persons
 		ArrayList<String> wames = new ArrayList<String>();
 		ArrayList<String> mames = new ArrayList<String>();
@@ -96,5 +96,32 @@ public class Initializer {
 //			}
 //			return people;
 //		}
+	}
+	
+	/**
+	 * Initializes all states.
+	 * @param m
+	 * @param w
+	 * @return All states.
+	 */
+	public ArrayList<ArrayList<State>> initializeStates(Man[] men, Woman[] women) {
+		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(men.length); // empty state list
+		
+		// Make states for each layer
+		for (int l = 0; l <= men.length; l++) {
+			ArrayList<State> layer = new ArrayList<State>();	// States in current layer
+			ArrayList<Engagement> eng = new ArrayList<Engagement>();	//
+			// Add states with l engagements until all combinations are made
+			for (int idx = 0; idx < l; idx++) {
+				for (Man m : men) {
+					for (Woman w: women) {
+						layer.add(new State(eng.toArray(new Engagement[eng.size()])));
+					}
+				}
+			}
+			states.set(l, layer);
+		}
+		
+		return states;
 	}
 }

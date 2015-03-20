@@ -17,7 +17,7 @@ public class Model {
 	/**
 	 * All states in the model.
 	 */
-	private State[] states;
+	private ArrayList<ArrayList<State>> states;
 	
 	/**
 	 * The men to be coupled.
@@ -36,10 +36,11 @@ public class Model {
 	 * @param n
 	 */
 	public Model(int n) {
-		this.men = Initializer.initializeMen(n);
-		this.women = Initializer.initializeWomen(n);
+		Initializer init = new Initializer();
+		this.men = init.initializeMen(n);
+		this.women = init.initializeWomen(n);
 		
-		Person[] people = Initializer.initializePreferences(men, women);
+		Person[] people = init.initializePreferences(men, women);
 		ArrayList<Man> m = new ArrayList<Man>();
 		ArrayList<Woman> w = new ArrayList<Woman>();
 		for(Person p : people) {
@@ -54,18 +55,44 @@ public class Model {
 	}
 	
 	/**
-	 * Initializes a model with states, men and women.
+	 * Initializes a model with states, given men and women.
 	 * 
-	 * @param states
 	 * @param men
 	 * @param women
 	 */
-	public Model(State[] states, Man[] men, Woman[] women) {
-		this.states = states;
+	public Model(Man[] men, Woman[] women) {
 		this.men = men;
 		this.women = women;
+		
+		Initializer init = new Initializer();
+		this.states = init.initializeStates(men, women);
 	}
 	
 	//TODO Queries for knowledge in the model?
 	
+	
+	// Getters and setters
+	public ArrayList<ArrayList<State>> getStates() {
+		return this.states;
+	}
+	
+	public Man[] getMen() {
+		return this.men;
+	}
+	
+	public Woman[] getWomen() {
+		return this.women;
+	}
+	
+	public void setStates(ArrayList<ArrayList<State>> s) {
+		this.states = s;
+	}
+	
+	public void setMen(Man[] m) {
+		this.men = m;
+	}
+	
+	public void setWomen(Woman[] w) {
+		this.women = w;
+	}
 }

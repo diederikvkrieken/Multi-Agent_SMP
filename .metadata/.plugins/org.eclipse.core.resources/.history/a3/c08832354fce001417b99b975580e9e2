@@ -79,7 +79,7 @@ public class SMP {
 		
 		men = (Man[]) Initializer.initializePreferences(men, num);
 		women = (Woman[]) Initializer.initializePreferences(women, num);
-		//String[] pref = men[1].getPreferences();
+		String[] pref = men[1].getPreferences();
 		
 		
 		//System.out.print(pref[0]+pref[1]+pref[2]+pref[3]);

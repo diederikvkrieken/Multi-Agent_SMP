@@ -3,6 +3,8 @@
  */
 package org.rug.MAS;
 
+import java.util.ArrayList;
+
 /**
  * Class from which the model is instantiated.
  * The model contains the complete representation of the SMP.
@@ -28,6 +30,31 @@ public class Model {
 	private Woman[] women;
 	
 	/**
+	 * Generic model. Initializes states, men and women randomly
+	 * in an SMP of size n.
+	 * 
+	 * @param n
+	 */
+	public Model(int n) {
+		this.men = Initializer.initializeMen(n);
+		this.women = Initializer.initializeWomen(n);
+		
+		Person[] people = Initializer.initializePreferences(men, women);
+		ArrayList<Man> m = new ArrayList<Man>();
+		ArrayList<Woman> w = new ArrayList<Woman>();
+		for(Person p : people) {
+			if (p instanceof Man) {
+				m.add((Man) p);
+			} else {
+				w.add((Woman) p);
+			}
+		}
+		this.men = m.toArray(new Man[n]);
+		this.women = w.toArray(new Woman[n]);
+	}
+	
+	/**
+	 * Initializes a model with states, men and women.
 	 * 
 	 * @param states
 	 * @param men

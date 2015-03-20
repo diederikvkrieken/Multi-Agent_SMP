@@ -3,4 +3,5 @@
 <fullyQualifiedTypeName name="java.util.Arrays"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="org.rug.MAS.Initializer"/>
+<fullyQualifiedTypeName name="org.rug.MAS.State"/>
 </qualifiedTypeNameHistroy>

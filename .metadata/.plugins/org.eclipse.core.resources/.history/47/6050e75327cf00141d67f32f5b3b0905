@@ -88,11 +88,8 @@ public class SMP {
 		String Woman1 = people[5].name.toString();
 		System.out.println(Woman1);
 		
-		Engagement[] rel=null;
 		for (int i = 0; i < num; i++) {
-			for (int j = num; j < people.length; j++) {
-				rel.engagement(people[i],people[j]);
-			}
+			
 		}
 		
 		//System.out.print(pref[0]+pref[1]+pref[2]+pref[3]);

@@ -4,6 +4,7 @@
 package org.rug.MAS;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 import java.util.Collections;
 
@@ -107,19 +108,44 @@ public class Initializer {
 	public ArrayList<ArrayList<State>> initializeStates(Man[] men, Woman[] women) {
 		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(men.length); // empty state list
 		
-		// Make states for each layer
-		for (int l = 0; l <= men.length; l++) {
-			ArrayList<State> layer = new ArrayList<State>();	// States in current layer
-			ArrayList<Engagement> eng = new ArrayList<Engagement>();	//
-			// Add states with l engagements until all combinations are made
-			for (int idx = 0; idx < l; idx++) {
-				for (Man m : men) {
-					for (Woman w: women) {
-						layer.add(new State(eng.toArray(new Engagement[eng.size()])));
-					}
+		// Zeroth layer only contains one state
+		LinkedList<State> layer = new LinkedList<State>();
+		layer.add(new State(new Engagement[0]));
+		states.set(0, new ArrayList<State>(layer));
+		// Make states for each subsequent layer
+		for (int l = 1; l <= men.length; l++) {
+			layer = new LinkedList<State>();	// States in current layer
+			// Fill queue with a relation between each man and woman
+			for (Man m : men) {
+				for (Woman w: women) {
+					Engagement[] eng = new Engagement[l];
+					eng[0] = new Engagement(m, w);
+					layer.add(new State(eng));
 				}
 			}
-			states.set(l, layer);
+			// Add states with l engagements until all combinations are made
+			for (int eng = 1; eng < l; eng++) {
+				LinkedList<State> newStates = new LinkedList<State>();	// States created by adding an engagement
+				// Dequeue layer until empty
+				while (!layer.isEmpty()) {
+					State s = layer.remove();
+					Engagement[] r = s.getEngagements();
+					// Add extra states with an extra relation
+					for (Man m : men) {
+						if (!s.isEngaged(m.getName())) {
+							for (Woman w : women) {
+								if (!s.isEngaged(w.getName())) {
+									// Both are not engaged yet
+									r[eng] = new Engagement(m, w);
+									newStates.add(new State(r));	// enqueue
+								}
+							}
+						}
+					}
+				}
+				layer = newStates;	// Layer becomes next stage in queue
+			}
+			states.set(l, new ArrayList<State>(layer));
 		}
 		
 		return states;

@@ -33,6 +33,18 @@ public class Engagement {
 	}
 	
 	/**
+	 * Checks whether a person is in this engagement.
+	 * Note that the check is based on name! As such, people should have distinct names.
+	 * 
+	 * @param name
+	 * @return True if the person is in this engagement.
+	 */
+	public boolean isEngaged(String name) {
+		if (name == this.dude.getName() || name == this.chick.getName()) return true;
+		else return false;
+	}
+	
+	/**
 	 * Checks whether a guy and a gal are engaged.
 	 * Note that the check is based on name! As such, people should have distinct names.
 	 * @param m
@@ -44,9 +56,8 @@ public class Engagement {
 		else return false;
 	}
 
-	/**
-	 * @param man
-	 * @param woman
-	 */
-
+	@Override
+	public String toString() {
+		return this.dude.getName() + " and " + this.chick.getName() + " are engaged!";
+	}
 }

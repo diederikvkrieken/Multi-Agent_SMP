@@ -28,6 +28,18 @@ public class State {
 	}
 	
 	/**
+	 * Checks whether a person is in an engagement.
+	 * @param a
+	 * @return True if a is engaged
+	 */
+	public boolean isEngaged(String a) {
+		for (Engagement r : relations) {
+			if (r.isEngaged(a)) return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Checks whether there is an engagement between a and b.
 	 * @param a
 	 * @param b
@@ -39,4 +51,19 @@ public class State {
 		}
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		String engagements = new String();
+		for (Engagement r : relations) {
+			engagements += r.toString() + "\n";
+		}
+		return "State with " + relations.length + " relations:\n" + engagements;
+	}
+	
+	// Getter
+	public Engagement[] getEngagements() {
+		return this.relations;
+	}
+	
 }

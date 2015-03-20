@@ -27,7 +27,7 @@ public class Engagement {
 	 * @param m
 	 * @param w
 	 */
-	public Engagement(Man m, Woman w) {
+	public static Engagement(Man m, Woman w) {
 		this.dude = m;
 		this.chick = w;
 	}

@@ -44,9 +44,4 @@ public class Engagement {
 		else return false;
 	}
 
-	/**
-	 * @param man
-	 * @param woman
-	 */
-
 }

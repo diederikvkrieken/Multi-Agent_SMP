@@ -97,4 +97,15 @@ public class Initializer {
 //			return people;
 //		}
 	}
+	
+	public static State[] initializeStates(Man[] men, Woman[] women){
+		//TODO initialize possible states
+		for (int i = 0; i < men.length; i++) {
+			for (int j = 0; j < women.length; j++) {
+				Engagement.Engagement(men[i], women[j]);
+			}
+			
+		}
+		return states
+	}
 }

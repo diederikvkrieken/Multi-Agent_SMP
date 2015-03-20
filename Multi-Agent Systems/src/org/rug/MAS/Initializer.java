@@ -18,12 +18,18 @@ public class Initializer {
 	/**
 	 * All 'random' names of women.
 	 */
-	private String[] namesWomen = {"Alice", "Beatrice", "Cleopatra", "Eve"};
+	private String[] namesWomen = {"Alice", "Beatrice", "Cleopatra", "Daniella", "Eve",
+			"Florentina", "GLADOS", "Harriete", "Isabelle", "Juliette", "Kristina",
+			"Luna", "Mildred", "Nilin", "Olivia", "Patricia", "Qlen", "Ramina", "Sophia",
+			"Tamar", "Uno", "Valerie", "Wilma", "Xanthippe", "Yvette", "Zara"};
 	
 	/**
 	 * All 'random' names of men.
 	 */
-	private String[] namesMen = {"Willy", "Xerxes", "Yannick", "Zorro"};
+	private String[] namesMen = {"Adam", "Bob", "Charles", "Dave", "Edward", "Frank",
+			"Henry", "Ibo", "Jacob", "Kaleb", "Lars", "Menno", "Norris", "Oliver",
+			"Presto", "Qrey", "Romeo", "Stephan", "Thomas", "Ursul",
+			"V", "Willy", "Xerxes", "Yannick", "Zorro"};
 	
 	/**
 	 * Initializes n men. Also assures there are no similar names.
@@ -31,12 +37,20 @@ public class Initializer {
 	 * @return n randomly initialized men.
 	 */
 	public Man[] initializeMen(int n) {
-		//TODO Something to initialize men.
-		Man[] men = new Man[n];
+		Man[] men = new Man[n];		// Initialize array of men
+		Random rand = new Random();	// RNG
 		for (int i = 0; i < n; i++) {
-			men[i] = new Man(namesMen[i]);
+			String name = namesMen[rand.nextInt(n)];
+			for (int check = 0; check < i; i++) {
+				// Check name was not used before
+				if (name.equals(men[check])) {
+					name = namesMen[rand.nextInt(n)];
+					check = -1;
+				}
+			}
+			men[i] = new Man(name);
 		}
-		return men;		
+		return men;
 	}
 
 	/**
@@ -45,14 +59,22 @@ public class Initializer {
 	 * @return n randomly initialized women.
 	 */
 	public Woman[] initializeWomen(int n) {
-		//TODO Something to initialize women.
-		Woman[] women = new Woman[n];
+		Woman[] women = new Woman[n];	// Initialize array of women
+		Random rand = new Random();		// RNG
 		for (int i = 0; i < n; i++) {
-			women[i] = new Woman(namesWomen[i]);
+			String name = namesWomen[rand.nextInt(n)];
+			for (int check = 0; check < i; i++) {
+				// Check name was not used before
+				if (name.equals(women[check])) {
+					name = namesWomen[rand.nextInt(n)];
+					check = -1;
+				}
+			}
+			women[i] = new Woman(name);
 		}
 		return women;
 	}
-	
+
 	/**
 	 * Randomly initializes preferences of all people.
 	 * @param people
@@ -82,21 +104,6 @@ public class Initializer {
 			res.add(w);
 		}
 		return res.toArray(new Person[res.size()]);
-//		if (people[0] instanceof Man) {
-//			for (int i = 0; i < n; i++) {
-//				String[] shuffle = namesWomen;
-//				Collections.shuffle(Arrays.asList(shuffle));
-//				people[i] = new Man(people[i].getName(), shuffle); 
-//			}
-//			return people;
-//		}else{
-//			for (int i = 0; i < n; i++) {
-//				String[] shuffle = namesMen;
-//				Collections.shuffle(Arrays.asList(shuffle));
-//				people[i] = new Woman(people[i].getName(), shuffle); 
-//			}
-//			return people;
-//		}
 	}
 	
 	/**
@@ -123,6 +130,7 @@ public class Initializer {
 					layer.add(new State(eng));
 				}
 			}
+			
 			// Add states with l engagements until all combinations are made
 			for (int eng = 1; eng < l; eng++) {
 				LinkedList<State> newStates = new LinkedList<State>();	// States created by adding an engagement

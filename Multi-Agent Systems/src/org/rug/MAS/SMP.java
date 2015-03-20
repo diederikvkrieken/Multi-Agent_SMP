@@ -3,12 +3,12 @@
  */
 package org.rug.MAS;
 
-import java.util.Arrays;
-import java.util.Collections;
 /*
  * Imports for input,
  */
 import java.util.Scanner;
+//import java.util.Arrays;
+//import java.util.Collections;
 
 /**
  * @author Diederik, Sebastiaan & Pieter
@@ -51,6 +51,10 @@ public class SMP {
 										in = input.next();
 									}
 									num--;
+									if (num == 0) {
+										// Check whether there are just as many men as women
+										// If not, reset num
+									}
 								}
 							} else {
 								// Randomly initialize people
@@ -77,8 +81,9 @@ public class SMP {
 		//System.out.println(men[1].getName());
 		//System.out.println(women[1].getName());
 		
-		men = (Man[]) Initializer.initializePreferences(men, num);
-		women = (Woman[]) Initializer.initializePreferences(women, num);
+		Person[] people = Initializer.initializePreferences(men, women); 
+//		men = (Man[]) Initializer.initializePreferences(men, num);
+//		women = (Woman[]) Initializer.initializePreferences(women, num);
 		//String[] pref = men[1].getPreferences();
 		
 		

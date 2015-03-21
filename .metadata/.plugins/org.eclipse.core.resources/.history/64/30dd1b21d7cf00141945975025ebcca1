@@ -106,7 +106,7 @@ public class SMP {
 //			System.out.println(layer.get(0));
 //		}
 		
-		System.out.print("smp: "+smp.getStates().size()+"\n");
+		System.out.print("smp: "+smp.getStates().size()+"\n");  
 		ArrayList<ArrayList<State>> layer = smp.getStates();
 		System.out.print("layer: "+layer.get(0).size()+"\n");
 		Iterator<ArrayList<State>> iterator = layer.iterator();

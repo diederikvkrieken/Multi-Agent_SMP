@@ -132,8 +132,8 @@ public class SMP {
 			Iterator<State> state = states.iterator();
 	        while(state.hasNext()){
 	        	
-	        	System.out.println(state.next());
-	        	//state.next();
+	        	//System.out.println(state.next());
+	        	state.next();
 	        }
 	        System.out.print("next!\n");
 		}

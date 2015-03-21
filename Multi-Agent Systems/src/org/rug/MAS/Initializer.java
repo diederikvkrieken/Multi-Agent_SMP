@@ -4,6 +4,7 @@
 package org.rug.MAS;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Collections;
@@ -130,28 +131,38 @@ public class Initializer {
 					layer.add(new State(eng));
 				}
 			}
-			
+						
 			// Add states with l engagements until all combinations are made
-			for (int eng = 1; eng < l; eng++) {
+			for (int enga = 1; enga < l; enga++) {
 				LinkedList<State> newStates = new LinkedList<State>();	// States created by adding an engagement
 				// Dequeue layer until empty
 				while (!layer.isEmpty()) {
 					State s = layer.remove();
 					Engagement[] r = s.getEngagements();
 					// Add extra states with an extra relation
+					String temp2 = r[0].toString() + "\n";
 					for (Man m : men) {
+						System.out.print("engagement: "+temp2+"\n");
+						System.out.print("man: "+m.getName()+"\n");
 						if (!s.isEngaged(m.getName())) {
 							for (Woman w : women) {
+								System.out.print("woman: "+w.getName()+"\n");
 								if (!s.isEngaged(w.getName())) {
 									// Both are not engaged yet
-									r[eng] = new Engagement(m, w);
+									System.out.print("new state: man: "+m.getName()+" woman: "+w.getName()+" & "+temp2+"\n");
+									r[enga] = new Engagement(m, w);
 									newStates.add(new State(r));	// enqueue
+								}else{
+									System.out.print("woman: "+w.getName()+" is already engaged\n");
 								}
 							}
+						}else{
+							System.out.print("man: "+m.getName()+" is already engaged\n");
 						}
 					}
 				}
 				layer = newStates;	// Layer becomes next stage in queue
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~"+enga);
 			}
 			states.add(new ArrayList<State>(layer));
 		}

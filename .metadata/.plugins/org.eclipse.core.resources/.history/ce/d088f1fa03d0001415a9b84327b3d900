@@ -78,7 +78,7 @@ public class SMP {
 				System.out.println("Please input an integer between 1 and 10.");
 			}
 		}*/
-		num = 3;
+		num = 4;
 		
 		Model smp = new Model(num);
 		/*Man[] men = smp.getMen();
@@ -132,8 +132,8 @@ public class SMP {
 			Iterator<State> state = states.iterator();
 	        while(state.hasNext()){
 	        	
-	        	System.out.println(state.next());
-	        	//state.next();
+	        	//System.out.println(state.next());
+	        	state.next();
 	        }
 	        System.out.print("next!\n");
 		}

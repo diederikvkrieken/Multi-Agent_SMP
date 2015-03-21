@@ -4,11 +4,14 @@
 package org.rug.MAS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 /*
  * Imports for input,
  */
 import java.util.Scanner;
+import java.util.Set;
 
 
 /**
@@ -78,11 +81,13 @@ public class SMP {
 		num = 4;
 		
 		Model smp = new Model(num);
-//		Man[] men = Initializer.initializeMen(num);
-//		Woman[] women = Initializer.initializeWomen(num);
+		Man[] men = smp.getMen();
+		Woman[] women = smp.getWomen();
 		
-		//System.out.println(men[1].getName());
-		//System.out.println(women[1].getName());
+		/*System.out.println(men[0].getName());
+		System.out.println(men[1].getName());
+		System.out.println(women[0].getName());
+		System.out.println(women[1].getName());*/
 		
 //		Person[] people = Initializer.initializePreferences(men, women); 
 //		men = (Man[]) Initializer.initializePreferences(men, num);
@@ -91,33 +96,49 @@ public class SMP {
 //		String Woman1 = people[5].name.toString();
 //		System.out.println(Woman1);
 		
-//		Engagement[] rel=null;
-//		for (int i = 0; i < num; i++) {
-//			for (int j = num; j < people.length; j++) {
-//				rel.engagement(people[i],people[j]);
-//			}
-//		}
-		
-		//System.out.print(pref[0]+pref[1]+pref[2]+pref[3]);
-		System.out.print("smp: "+smp.getStates().size()+"\n");
 
 //		for (ArrayList<State> layer : smp.getStates()) {
-//			System.out.print(layer.size()+"\n");
 //			System.out.println(layer.get(0));
 //		}
+				
+		/*
+		Set<ArrayList<State>> s = new LinkedHashSet<ArrayList<State>>(smp.getStates());
+		Set<State> t = new HashSet<State>();
+	    Iterator<ArrayList<State>> itr = s.iterator();
+		while (itr.hasNext()){
+		      t.addAll(itr.next());
+		}
+		s.clear();
+		//List<String> list = new ArrayList<String>(hash);
+		for (int i = 0; i < t.size(); i++) {
+			s.add(t[i]);
+		}
+		ArrayList<ArrayList<State>> layer = new ArrayList<ArrayList<State>>(s); //remove duplicates */
 		
 		System.out.print("smp: "+smp.getStates().size()+"\n");
+
 		ArrayList<ArrayList<State>> layer = smp.getStates();
-		System.out.print("layer: "+layer.get(0).size()+"\n");
 		Iterator<ArrayList<State>> iterator = layer.iterator();
 		while(iterator.hasNext()){
-			ArrayList<State> states = iterator.next();
-	        Iterator<State> state = states.iterator();
+			/*ArrayList<State> temp = iterator.next();
+			Set<State> temp2 = new LinkedHashSet<State>(temp);
+			ArrayList<State> states = new ArrayList<State>(temp2);*/
+			ArrayList<State> temp = iterator.next();
+			ArrayList<State> states = new ArrayList<State>(new LinkedHashSet<State>(temp));
+			
+			//ArrayList<State> states = iterator.next();
+			System.out.print("layer: "+states.size()+"\n");
+			Iterator<State> state = states.iterator();
 	        while(state.hasNext()){
+	        	
 	        	System.out.println(state.next());
+	        	//state.next();
 	        }
 	        System.out.print("next!\n");
 		}
+		
+		//
+		
 
 		//for (int i = 0; i < ((CharSequence) layer).length(); i++) {
 		//	System.out.println(layer.get(i));

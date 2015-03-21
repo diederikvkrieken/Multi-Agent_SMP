@@ -42,8 +42,8 @@ public class Initializer {
 		for (int i = 0; i < n; i++) {
 			String name = namesMen[rand.nextInt(n)];
 			for (int check = 0; check < i; check++) {
-				// Check name was not used before
-				if (name.equals(men[check])) {
+				// Check name was not used before, use getName
+				if (name.equals(men[check].getName())) {
 					name = namesMen[rand.nextInt(n)];
 					check = -1;
 				}
@@ -65,7 +65,7 @@ public class Initializer {
 			String name = namesWomen[rand.nextInt(n)];
 			for (int check = 0; check < i; check++) {
 				// Check name was not used before
-				if (name.equals(women[check])) {
+				if (name.equals(women[check].getName())) {
 					name = namesWomen[rand.nextInt(n)];
 					check = -1;
 				}

@@ -81,10 +81,10 @@ public class SMP {
 		num = 4;
 		
 		Model smp = new Model(num);
-		Man[] men = smp.getMen();
+		/*Man[] men = smp.getMen();
 		Woman[] women = smp.getWomen();
 		
-		/*System.out.println(men[0].getName());
+		System.out.println(men[0].getName());
 		System.out.println(men[1].getName());
 		System.out.println(women[0].getName());
 		System.out.println(women[1].getName());*/
@@ -122,17 +122,18 @@ public class SMP {
 		while(iterator.hasNext()){
 			/*ArrayList<State> temp = iterator.next();
 			Set<State> temp2 = new LinkedHashSet<State>(temp);
-			ArrayList<State> states = new ArrayList<State>(temp2);*/
+			ArrayList<State> states = new ArrayList<State>(temp2);
+			ArrayList<State> states = new ArrayList<State>(new LinkedHashSet<State>(temp));
+			 */
 			ArrayList<State> temp = iterator.next();
 			ArrayList<State> states = new ArrayList<State>(new LinkedHashSet<State>(temp));
-			
 			//ArrayList<State> states = iterator.next();
 			System.out.print("layer: "+states.size()+"\n");
 			Iterator<State> state = states.iterator();
 	        while(state.hasNext()){
 	        	
-	        	System.out.println(state.next());
-	        	//state.next();
+	        	//System.out.println(state.next());
+	        	state.next();
 	        }
 	        System.out.print("next!\n");
 		}

@@ -12,7 +12,6 @@ INDEX VERSION 1.127+C:\Users\Diederik\workspace\MAS_stable_marriage\.metadata\.p
 3776425001.index
 844601494.index
 2958705335.index
-1210954732.index
 949515501.index
 847618560.index
 3520661010.index

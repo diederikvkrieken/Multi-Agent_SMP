@@ -41,7 +41,7 @@ public class Initializer {
 		Random rand = new Random();	// RNG
 		for (int i = 0; i < n; i++) {
 			String name = namesMen[rand.nextInt(n)];
-			for (int check = 0; check < i; i++) {
+			for (int check = 0; check < i; check++) {
 				// Check name was not used before
 				if (name.equals(men[check])) {
 					name = namesMen[rand.nextInt(n)];
@@ -63,7 +63,7 @@ public class Initializer {
 		Random rand = new Random();		// RNG
 		for (int i = 0; i < n; i++) {
 			String name = namesWomen[rand.nextInt(n)];
-			for (int check = 0; check < i; i++) {
+			for (int check = 0; check < i; check++) {
 				// Check name was not used before
 				if (name.equals(women[check])) {
 					name = namesWomen[rand.nextInt(n)];

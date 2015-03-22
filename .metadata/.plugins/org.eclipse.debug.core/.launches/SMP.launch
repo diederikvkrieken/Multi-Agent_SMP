@@ -8,4 +8,5 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.rug.MAS.SMP"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Multi-Agent Systems"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-XX:+HeapDumpOnOutOfMemoryError"/>
 </launchConfiguration>

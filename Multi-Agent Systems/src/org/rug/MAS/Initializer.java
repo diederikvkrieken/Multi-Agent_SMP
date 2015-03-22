@@ -4,6 +4,8 @@
 package org.rug.MAS;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Random;
@@ -140,31 +142,78 @@ public class Initializer {
 					State s = layer.remove();
 					Engagement[] r = s.getEngagements();
 					// Add extra states with an extra relation
-					String temp2 = r[0].toString() + "\n";
 					for (Man m : men) {
-						System.out.print("engagement: "+temp2+"\n");
-						System.out.print("man: "+m.getName()+"\n");
 						if (!s.isEngaged(m.getName())) {
 							for (Woman w : women) {
-								System.out.print("woman: "+w.getName()+"\n");
 								if (!s.isEngaged(w.getName())) {
 									// Both are not engaged yet
-									System.out.print("new state: man: "+m.getName()+" woman: "+w.getName()+" & "+temp2+"\n");
 									r[enga] = new Engagement(m, w);
 									newStates.add(new State(r));	// enqueue
-								}else{
-									System.out.print("woman: "+w.getName()+" is already engaged\n");
 								}
 							}
-						}else{
-							System.out.print("man: "+m.getName()+" is already engaged\n");
 						}
 					}
 				}
 				layer = newStates;	// Layer becomes next stage in queue
 				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~"+enga);
 			}
+			//states.add(new ArrayList<State>(new HashSet(layer)));
 			states.add(new ArrayList<State>(layer));
+		}
+		
+		return states;
+	}
+	
+	public ArrayList<ArrayList<State>> initializeStatesDiederik(Man[] men, Woman[] women) {
+		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(); // empty state list
+		
+		// Zeroth layer only contains one state
+		LinkedList<State> layer = new LinkedList<State>();
+		layer.add(new State(new Engagement[0]));
+		states.add(new ArrayList<State>(layer));
+		// Make states for each subsequent layer
+		for (int l = 1; l <= men.length; l++) {
+			layer = new LinkedList<State>();	// States in current layer
+			// Fill queue with a relation between each man and woman
+			for (Man m : men) {
+				for (Woman w: women) {
+					Engagement[] eng = new Engagement[1];
+					eng[0] = new Engagement(m, w);
+					layer.add(new State(eng));
+				}
+			}
+						
+			// Add states with l engagements until all combinations are made
+			for (int enga = 1; enga < l; enga++) {
+				LinkedList<State> newStates = new LinkedList<State>();	// States created by adding an engagement
+				// Dequeue layer until empty
+				while (!layer.isEmpty()) {
+					State s = layer.remove();
+					Engagement[] r = s.getEngagements();
+					String[] occ = s.areOccupied();
+					r = Arrays.copyOf(r, r.length + 1);
+					for (Man m : men) {
+						//System.out.print("engagement: "+temp2+"\n");
+						//System.out.print("man: "+m.getName()+"\n");
+						if (!Arrays.asList(occ).contains(m.getName())) {
+							for (Woman w : women) {
+								//System.out.print("woman: "+w.getName()+"\n");
+								if (!Arrays.asList(occ).contains(w.getName())) {
+									// Both are not engaged yet
+									//System.out.print("new state: man: "+m.getName()+" woman: "+w.getName()+" & "+temp2+"\n");
+									r[enga] = new Engagement(m, w);
+									newStates.add(new State(r));	// enqueue
+								}
+							}
+						}
+					}
+				}
+				layer = newStates;	// Layer becomes next stage in queue
+				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~"+enga);
+			}
+			//states.add(new ArrayList<State>(new HashSet(layer)));
+			ArrayList<State> test = new ArrayList<State>(layer);
+			states.add(test);
 		}
 		
 		return states;

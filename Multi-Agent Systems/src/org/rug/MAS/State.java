@@ -70,4 +70,22 @@ public class State {
 		return this.relations;
 	}
 	
+	public String[] areOccupied(){
+		if (relations.length != 0) {
+			String[] s = new String[(relations.length*2)];
+			int i =0;
+			for (Engagement r : relations) {
+				s[i] = r.manIsOccupied();
+				i++;
+				s[i] = r.womanIsOccupied();
+				i++;
+			}
+			return s;
+		}else{
+			String[] s = new String[0];
+			s[0] = "";
+			return s;			
+		}
+	}
+	
 }

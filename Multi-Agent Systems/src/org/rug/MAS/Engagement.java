@@ -60,4 +60,11 @@ public class Engagement {
 	public String toString() {
 		return this.dude.getName() + " and " + this.chick.getName() + " are engaged!";
 	}
+	
+	public String manIsOccupied(){
+		return this.dude.getName();
+	}
+	public String womanIsOccupied(){
+		return this.chick.getName();
+	}
 }

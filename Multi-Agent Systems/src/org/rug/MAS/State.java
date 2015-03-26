@@ -3,6 +3,8 @@
  */
 package org.rug.MAS;
 
+import java.util.Arrays;
+
 /**
  * A state is characterised by the engagements.
  * The same men and women are always present.
@@ -61,9 +63,9 @@ public class State {
 			String[] s = new String[(relations.length*2)];
 			int i =0;
 			for (Engagement r : relations) {
-				s[i] = r.getMan();
+				s[i] = r.getMan().getName();
 				i++;
-				s[i] = r.getWoman();
+				s[i] = r.getWoman().getName();
 				i++;
 			}
 			return s;
@@ -72,6 +74,18 @@ public class State {
 			s[0] = "";
 			return s;			
 		}
+	}
+	
+	/**
+	 * A state equals another if it contains exactly the same relations.
+	 * 
+	 * @return True if the relations are exactly the same, false otherwise.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		// I apologize up front for the one-liner :)
+		if (obj instanceof State && Arrays.equals(((State) obj).getEngagements(), this.relations)) return true;
+		return false;
 	}
 	
 	@Override

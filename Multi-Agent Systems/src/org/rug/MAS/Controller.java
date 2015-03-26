@@ -37,7 +37,7 @@ public class Controller {
 		if (!states.isEmpty()) {
 			for (State s : states.get(states.size()-1)) {
 				// Check whether there is an engagement coinciding r
-				if (!s.areEngaged(r.manIsOccupied(), r.womanIsOccupied())) {
+				if (!s.areEngaged(r.getMan().getName(), r.getWoman().getName())) {
 					// If not, it is not stable
 					return false;
 				}

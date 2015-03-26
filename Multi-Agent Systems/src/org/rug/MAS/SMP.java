@@ -81,6 +81,19 @@ public class SMP {
 		num = 4;
 		
 		Model smp = new Model(num);
+		
+		Engagement testa = new Engagement(new Man("Adam"), new Woman("Eve"));
+		Engagement testb = new Engagement(new Man("Adam"), new Woman("Eve"));
+		System.out.println("equal engagement: " + testa.equals(testb));
+		Engagement testc = new Engagement(new Man("Bob"), new Woman("Sandra"));
+		Engagement testd = new Engagement(new Man("David"), new Woman("Wilma"));
+		System.out.println("unequal engagement: " + testc.equals(testd));
+		State stateA = new State(new Engagement[] {testa, testc});
+		State stateB = new State(new Engagement[] {testa, testc});
+		System.out.println("equal state: " + stateA.equals(stateB));
+		State stateC = new State(new Engagement[] {testa, testd});
+		System.out.println("unequal state: " + stateA.equals(stateC));
+		
 		/*Man[] men = smp.getMen();
 		Woman[] women = smp.getWomen();
 		

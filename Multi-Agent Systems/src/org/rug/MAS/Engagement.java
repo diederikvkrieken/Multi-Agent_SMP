@@ -56,6 +56,21 @@ public class Engagement {
 		else return false;
 	}
 
+	
+	/**
+	 * An engagement equals another if the names contained are equal.
+	 * 
+	 * @return True if contained names are equal, false otherwise.
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof Engagement) {
+			if (this.dude.getName().equals(((Engagement) o).getMan().getName()) &&
+					this.chick.getName().equals(((Engagement) o).getWoman().getName())) return true;
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return this.dude.getName() + " and " + this.chick.getName() + " are engaged!";
@@ -63,11 +78,11 @@ public class Engagement {
 	
 	// Getters
 	
-	public String getMan(){
-		return this.dude.getName();
+	public Man getMan(){
+		return this.dude;
 	}
 	
-	public String getWoman(){
-		return this.chick.getName();
+	public Woman getWoman(){
+		return this.chick;
 	}
 }

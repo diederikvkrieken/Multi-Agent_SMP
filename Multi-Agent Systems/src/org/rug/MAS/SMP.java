@@ -78,7 +78,7 @@ public class SMP {
 				System.out.println("Please input an integer between 1 and 10.");
 			}
 		}*/
-		num = 10;
+		num = 7;
 		
 		Model smp = new Model(num);
 		
@@ -95,6 +95,11 @@ public class SMP {
 		System.out.println("equal state: " + stateA.equals(stateB));
 		State stateC = new State(new Engagement[] {testa, testd});
 		System.out.println("unequal state: " + stateA.equals(stateC));
+		
+		LinkedHashSet<State> testQueue = new LinkedHashSet<State>();
+		testQueue.add(stateA);
+		System.out.println("Adding equal state: " + testQueue.add(stateB));
+		System.out.println("Adding unequal state: " + testQueue.add(stateC));
 		
 		/*Man[] men = smp.getMen();
 		Woman[] women = smp.getWomen();

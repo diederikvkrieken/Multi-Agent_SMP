@@ -153,15 +153,17 @@ public class Initializer {
 		Iterator<State> it = prev.iterator();
 		while (it.hasNext()) {
 			State s = it.next();
-			ArrayList<Engagement> r = new ArrayList<Engagement>(Arrays.asList(s.getEngagements()));
+			it.remove();
+			Engagement[] r = s.getEngagements();
+			r = Arrays.copyOf(r, r.length+1);	// Extend for adding a new relation 
 			// Add extra states with an extra relation
 			for (Man m : men) {
 				if (!s.isEngaged(m.getName())) {
 					for (Woman w : women) {
 						if (!s.isEngaged(w.getName())) {
 							// Both are not engaged yet
-							r.add(new Engagement(m, w));
-							current.add(new State(r.toArray(new Engagement[r.size()])));	// enqueue
+							r[n-1] = new Engagement(m, w);
+							current.add(new State(r));	// enqueue
 						}
 					}
 				}

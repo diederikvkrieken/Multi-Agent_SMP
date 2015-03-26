@@ -78,9 +78,11 @@ public class SMP {
 				System.out.println("Please input an integer between 1 and 10.");
 			}
 		}*/
-		num = 4;
+		num = 10;
 		
 		Model smp = new Model(num);
+		
+		Controller ctrl = new Controller(smp);
 		
 		Engagement testa = new Engagement(new Man("Adam"), new Woman("Eve"));
 		Engagement testb = new Engagement(new Man("Adam"), new Woman("Eve"));
@@ -89,7 +91,7 @@ public class SMP {
 		Engagement testd = new Engagement(new Man("David"), new Woman("Wilma"));
 		System.out.println("unequal engagement: " + testc.equals(testd));
 		State stateA = new State(new Engagement[] {testa, testc});
-		State stateB = new State(new Engagement[] {testa, testc});
+		State stateB = new State(new Engagement[] {testb, testc});
 		System.out.println("equal state: " + stateA.equals(stateB));
 		State stateC = new State(new Engagement[] {testa, testd});
 		System.out.println("unequal state: " + stateA.equals(stateC));

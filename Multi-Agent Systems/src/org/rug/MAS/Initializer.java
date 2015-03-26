@@ -111,56 +111,77 @@ public class Initializer {
 	}
 	
 	/**
-	 * Initializes all states.
-	 * @param m
-	 * @param w
-	 * @return All states.
+	 * Recursive method of initializing states.
+	 * @param men
+	 * @param women
+	 * @param n
+	 * @return List of states in the layer of depth n.
 	 */
-	public ArrayList<ArrayList<State>> initializeStates(Man[] men, Woman[] women) {
-		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(); // empty state list
-		
-		// Zeroth layer only contains one state
-		LinkedHashSet<State> layer = new LinkedHashSet<State>();
-		layer.add(new State(new Engagement[0]));
-		states.add(new ArrayList<State>(layer));
-		// Make states for each subsequent layer
-		for (int l = 1; l <= men.length; l++) {
-			layer = new LinkedHashSet<State>();	// States in current layer
+	private ArrayList<State> statesRec(ArrayList<ArrayList<State>> comp, Man[] men, Woman[] women, int n) {
+		// Base cases
+		if (n < 1) {
+			// Zeroth layer, contains only one state
+			ArrayList<State> layer = new ArrayList<State>();
+			layer.add(new State(new Engagement[0]));
+			return layer;
+		}
+		if (n == 1) {
+			// First layer
+			ArrayList<State> layer = new ArrayList<State>();
 			// Fill queue with a relation between each man and woman
 			for (Man m : men) {
 				for (Woman w: women) {
-					Engagement[] eng = new Engagement[l];
+					Engagement[] eng = new Engagement[1];
 					eng[0] = new Engagement(m, w);
 					layer.add(new State(eng));
 				}
 			}
-						
-			// Add states with l engagements until all combinations are made
-			for (int enga = 1; enga < l; enga++) {
-				LinkedHashSet<State> newStates = new LinkedHashSet<State>();	// States created by adding an engagement
-				// Dequeue layer until empty
-				Iterator<State> layerit = layer.iterator();
-				while (layerit.hasNext()) {
-					State s = layerit.next();
-					Engagement[] r = s.getEngagements();
-					// Add extra states with an extra relation
-					for (Man m : men) {
-						if (!s.isEngaged(m.getName())) {
-							for (Woman w : women) {
-								if (!s.isEngaged(w.getName())) {
-									// Both are not engaged yet
-									r[enga] = new Engagement(m, w);
-									newStates.add(new State(r));	// enqueue
-								}
-							}
+			return layer;
+		}
+		
+		LinkedHashSet<State> prev = new LinkedHashSet<State>(comp.get(n-1));	// States in previous layer
+		if (!prev.isEmpty()) {
+			// Previous layer already computed
+			// Drop towards the common part with recursive case
+		} else {
+			// Recursive case
+			prev = new LinkedHashSet<State>(statesRec(comp, men, women, n-1));
+		}
+		// Common part in computing current layer
+		LinkedHashSet<State> current = new LinkedHashSet<State>();	// States in current layer starts empty
+		// Dequeue layer until empty
+		Iterator<State> it = prev.iterator();
+		while (it.hasNext()) {
+			State s = it.next();
+			ArrayList<Engagement> r = new ArrayList<Engagement>(Arrays.asList(s.getEngagements()));
+			// Add extra states with an extra relation
+			for (Man m : men) {
+				if (!s.isEngaged(m.getName())) {
+					for (Woman w : women) {
+						if (!s.isEngaged(w.getName())) {
+							// Both are not engaged yet
+							r.add(new Engagement(m, w));
+							current.add(new State(r.toArray(new Engagement[r.size()])));	// enqueue
 						}
 					}
 				}
-				layer = newStates;	// Layer becomes next stage in queue
-				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~"+enga);
 			}
-			states.add(new ArrayList<State>(layer));
-			//states.add(new ArrayList<State>(layer));
+		}
+		return new ArrayList<State>(current);
+	}
+	
+	/**
+	 * Initializes all states.
+	 * @param men
+	 * @param women
+	 * @return All states.
+	 */
+	public ArrayList<ArrayList<State>> initializeStates(Man[] men, Woman[] women) {
+		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(); // empty state list
+
+		// Make states for each layer
+		for (int l = 0; l <= men.length; l++) {
+			states.add(statesRec(states, men, women, l));
 		}
 		
 		return states;

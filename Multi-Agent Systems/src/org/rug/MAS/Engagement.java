@@ -61,10 +61,13 @@ public class Engagement {
 		return this.dude.getName() + " and " + this.chick.getName() + " are engaged!";
 	}
 	
-	public String manIsOccupied(){
+	// Getters
+	
+	public String getMan(){
 		return this.dude.getName();
 	}
-	public String womanIsOccupied(){
+	
+	public String getWoman(){
 		return this.chick.getName();
 	}
 }

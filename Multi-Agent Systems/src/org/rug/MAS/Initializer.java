@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Collections;
@@ -65,11 +66,11 @@ public class Initializer {
 		Woman[] women = new Woman[n];	// Initialize array of women
 		Random rand = new Random();		// RNG
 		for (int i = 0; i < n; i++) {
-			String name = namesWomen[rand.nextInt(n)];
+			String name = namesWomen[(this.namesWomen.length-n)+rand.nextInt(n)];
 			for (int check = 0; check < i; check++) {
 				// Check name was not used before
 				if (name.equals(women[check].getName())) {
-					name = namesWomen[rand.nextInt(n)];
+					name = namesWomen[(this.namesWomen.length-n)+rand.nextInt(n)];
 					check = -1;
 				}
 			}
@@ -119,12 +120,12 @@ public class Initializer {
 		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(); // empty state list
 		
 		// Zeroth layer only contains one state
-		LinkedList<State> layer = new LinkedList<State>();
+		LinkedHashSet<State> layer = new LinkedHashSet<State>();
 		layer.add(new State(new Engagement[0]));
 		states.add(new ArrayList<State>(layer));
 		// Make states for each subsequent layer
 		for (int l = 1; l <= men.length; l++) {
-			layer = new LinkedList<State>();	// States in current layer
+			layer = new LinkedHashSet<State>();	// States in current layer
 			// Fill queue with a relation between each man and woman
 			for (Man m : men) {
 				for (Woman w: women) {
@@ -136,10 +137,11 @@ public class Initializer {
 						
 			// Add states with l engagements until all combinations are made
 			for (int enga = 1; enga < l; enga++) {
-				LinkedList<State> newStates = new LinkedList<State>();	// States created by adding an engagement
+				LinkedHashSet<State> newStates = new LinkedHashSet<State>();	// States created by adding an engagement
 				// Dequeue layer until empty
-				while (!layer.isEmpty()) {
-					State s = layer.remove();
+				Iterator<State> layerit = layer.iterator();
+				while (layerit.hasNext()) {
+					State s = layerit.next();
 					Engagement[] r = s.getEngagements();
 					// Add extra states with an extra relation
 					for (Man m : men) {
@@ -157,14 +159,14 @@ public class Initializer {
 				layer = newStates;	// Layer becomes next stage in queue
 				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~"+enga);
 			}
-			//states.add(new ArrayList<State>(new HashSet(layer)));
 			states.add(new ArrayList<State>(layer));
+			//states.add(new ArrayList<State>(layer));
 		}
 		
 		return states;
 	}
 	
-	public ArrayList<ArrayList<State>> initializeStatesDiederik(Man[] men, Woman[] women) {
+	/*public ArrayList<ArrayList<State>> initializeStatesDiederik(Man[] men, Woman[] women) {
 		ArrayList<ArrayList<State>> states = new ArrayList<ArrayList<State>>(); // empty state list
 		
 		// Zeroth layer only contains one state
@@ -217,5 +219,5 @@ public class Initializer {
 		}
 		
 		return states;
-	}
+	}*/
 }

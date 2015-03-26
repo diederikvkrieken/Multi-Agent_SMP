@@ -139,21 +139,18 @@ public class Initializer {
 			return layer;
 		}
 		
-		LinkedHashSet<State> prev = new LinkedHashSet<State>(comp.get(n-1));	// States in previous layer
+		ArrayList<State> prev = new ArrayList<State>(comp.get(n-1));	// States in previous layer
 		if (!prev.isEmpty()) {
 			// Previous layer already computed
 			// Drop towards the common part with recursive case
 		} else {
 			// Recursive case
-			prev = new LinkedHashSet<State>(statesRec(comp, men, women, n-1));
+			prev = new ArrayList<State>(statesRec(comp, men, women, n-1));
 		}
 		// Common part in computing current layer
-		LinkedHashSet<State> current = new LinkedHashSet<State>();	// States in current layer starts empty
+		ArrayList<State> current = new ArrayList<State>();	// States in current layer starts empty
 		// Dequeue layer until empty
-		Iterator<State> it = prev.iterator();
-		while (it.hasNext()) {
-			State s = it.next();
-			it.remove();
+		for (State s : prev) {
 			Engagement[] r = s.getEngagements();
 			r = Arrays.copyOf(r, r.length+1);	// Extend for adding a new relation 
 			// Add extra states with an extra relation
@@ -163,13 +160,14 @@ public class Initializer {
 						if (!s.isEngaged(w.getName())) {
 							// Both are not engaged yet
 							r[n-1] = new Engagement(m, w);
-							current.add(new State(r));	// enqueue
+							State news = new State(r);
+							if (!current.contains(news)) current.add(news);	// enqueue
 						}
 					}
 				}
 			}
 		}
-		return new ArrayList<State>(current);
+		return current;
 	}
 	
 	/**

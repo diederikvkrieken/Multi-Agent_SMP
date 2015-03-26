@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 /*
  * Imports for input,
  */
@@ -78,7 +79,7 @@ public class SMP {
 				System.out.println("Please input an integer between 1 and 10.");
 			}
 		}*/
-		num = 7;
+		num = 10;
 		
 		Model smp = new Model(num);
 		
@@ -91,15 +92,20 @@ public class SMP {
 		Engagement testd = new Engagement(new Man("David"), new Woman("Wilma"));
 		System.out.println("unequal engagement: " + testc.equals(testd));
 		State stateA = new State(new Engagement[] {testa, testc});
+		State statebla = new State(new Engagement[] {testc, testa});
+		State stateEx = new State(new Engagement[] {testa, testc, testd});
 		State stateB = new State(new Engagement[] {testb, testc});
 		System.out.println("equal state: " + stateA.equals(stateB));
+		System.out.println("shuffled state: " + stateA.equals(statebla));
+		System.out.println("extra state: " + stateA.equals(stateEx));
+		
 		State stateC = new State(new Engagement[] {testa, testd});
 		System.out.println("unequal state: " + stateA.equals(stateC));
 		
-		LinkedHashSet<State> testQueue = new LinkedHashSet<State>();
+		LinkedList<State> testQueue = new LinkedList<State>();
 		testQueue.add(stateA);
-		System.out.println("Adding equal state: " + testQueue.add(stateB));
-		System.out.println("Adding unequal state: " + testQueue.add(stateC));
+		System.out.println("Adding equal state: " + !testQueue.contains(stateB));
+		System.out.println("Adding unequal state: " + !testQueue.contains(stateC));
 		
 		/*Man[] men = smp.getMen();
 		Woman[] women = smp.getWomen();

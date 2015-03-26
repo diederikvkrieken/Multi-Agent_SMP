@@ -3,6 +3,7 @@
  */
 package org.rug.MAS;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -84,9 +85,31 @@ public class State {
 	@Override
 	public boolean equals(Object obj) {
 		// I apologize up front for the one-liner :)
-		if (obj instanceof State && Arrays.equals(((State) obj).getEngagements(), this.relations)) return true;
+		if (obj instanceof State) {
+			ArrayList<Engagement> eng = new ArrayList<Engagement>(Arrays.asList(((State) obj).getEngagements()));
+			if (eng.size() == this.relations.length) {
+				if (this.relations.length == 0) {
+					return true;
+				} else {
+					for (Engagement r : this.relations) {
+						if (!eng.contains(r)) return false;
+					}
+					return true;
+				}
+			}
+		}
 		return false;
 	}
+	
+//	/**
+//	 * HashCode of a state equals the number of engagements.
+//	 * 
+//	 * @return hashCode represented as number of engagements.
+//	 */
+//	@Override
+//	public int hashCode() {
+//		return this.relations.length;
+//	}
 	
 	@Override
 	public String toString() {

@@ -40,11 +40,7 @@ public class Model {
 		Initializer init = new Initializer();
 		
 		// Initialize people
-		this.men = init.initializeMen(n);
-		this.women = init.initializeWomen(n);
-		
-		// Initialize preferences
-		Person[] people = init.initializePreferences(men, women);
+		Person[] people = init.initializePreferences(init.initializeMen(n), init.initializeWomen(n));
 		ArrayList<Man> m = new ArrayList<Man>();
 		ArrayList<Woman> w = new ArrayList<Woman>();
 		for(Person p : people) {

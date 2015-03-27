@@ -152,13 +152,14 @@ public class Initializer {
 		// Dequeue layer until empty
 		for (State s : prev) {
 			Engagement[] r = s.getEngagements();
-			r = Arrays.copyOf(r, r.length+1);	// Extend for adding a new relation 
+			r = System.arraycopy(r, r.length+1);	// Extend for adding a new relation 
 			// Add extra states with an extra relation
 			for (Man m : men) {
 				if (!s.isEngaged(m.getName())) {
 					for (Woman w : women) {
 						if (!s.isEngaged(w.getName())) {
 							// Both are not engaged yet
+							r = Arrays.copyOf(r, r.length);
 							r[n-1] = new Engagement(m, w);
 							State news = new State(r);
 							if (!current.contains(news)) current.add(news);	// enqueue

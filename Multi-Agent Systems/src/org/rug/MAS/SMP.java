@@ -79,7 +79,7 @@ public class SMP {
 				System.out.println("Please input an integer between 1 and 10.");
 			}
 		}*/
-		num = 10;
+		num = 3;
 		
 		Model smp = new Model(num);
 		

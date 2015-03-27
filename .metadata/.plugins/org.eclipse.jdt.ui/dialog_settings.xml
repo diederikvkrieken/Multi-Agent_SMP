@@ -22,6 +22,11 @@
 		<item value="C:\Users\Diederik\workspace\MAS_stable_marriage\Multi-Agent Systems\doc" key="destdir"/>
 		<item value="false" key="openinbrowser"/>
 		<section name="projects">
+			<section name="Multi-Agent Systems">
+				<item value="C:\Users\Diederik\workspace\MAS_stable_marriage\Multi-Agent Systems\javadoc.xml" key="antpath"/>
+				<item value="C:\Users\Diederik\workspace\MAS_stable_marriage\Multi-Agent Systems\doc" key="destdir"/>
+				<item value="" key="href"/>
+			</section>
 		</section>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
@@ -41,6 +46,9 @@
 		<item value="1282" key="DIALOG_HEIGHT"/>
 		<item value="800" key="DIALOG_X_ORIGIN"/>
 		<item value="18" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="BuildPathsPropertyPage">
+		<item value="0" key="pageIndex"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.typehierarchy.QuickHierarchy">
 		<item value="true" key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_SIZE"/>

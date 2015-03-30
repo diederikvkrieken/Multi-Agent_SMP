@@ -52,6 +52,8 @@ public class Model {
 		}
 		this.men = m.toArray(new Man[n]);
 		this.women = w.toArray(new Woman[n]);
+		//TODO don't know whether this actually adapts the people rather than making new copies.
+		init.initializeOtherPreferences(this.men, this.women);
 		
 		// Initialize states
 		this.states = init.initializeStates(men, women);

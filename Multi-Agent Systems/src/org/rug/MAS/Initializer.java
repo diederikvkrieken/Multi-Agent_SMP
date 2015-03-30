@@ -111,6 +111,23 @@ public class Initializer {
 	}
 	
 	/**
+	 * Initializes the lists of preferences each person infers.
+	 * 
+	 * @param men
+	 * @param women
+	 * @return All men and women with initialized inferred lists.
+	 */
+	public Person[] initializeOtherPreferences(Man[] men, Woman[] women) {
+		for (Man m : men) m.initOtherPref(men, women);
+		for (Woman w : women) w.initOtherPref(men, women);
+		
+		Person[] persons = new Person[men.length + women.length];	// Array becoming all men and women
+		System.arraycopy(men, 0, persons, 0, men.length);
+		System.arraycopy(women, 0, persons, men.length, women.length);
+		return persons;
+	}
+	
+	/**
 	 * Recursive method of initializing states.
 	 * @param men
 	 * @param women

@@ -19,9 +19,8 @@ public abstract class Person {
 	
 	/**
 	 * A list of personal preferences, based on names.
-	 * The counter is prominently for the men,
-	 * indicating who to propose to next.
-	 * For women it slides the other way around, but it is not useful (yet).
+	 * The counter is used by men to indicate who to propose to next.
+	 * For women it indicates to whom they are engaged.
 	 */
 	protected Preferences preferences;
 	

@@ -20,6 +20,11 @@ public class Model {
 	private ArrayList<ArrayList<State>> states;
 	
 	/**
+	 * State the simulation is in.
+	 */
+	private State currentState;
+	
+	/**
 	 * The men to be coupled.
 	 */
 	private Man[] men;
@@ -57,6 +62,7 @@ public class Model {
 		
 		// Initialize states
 		this.states = init.initializeStates(men, women);
+		this.currentState = new State(new Engagement[this.men.length]);
 	}
 	
 	/**
@@ -72,8 +78,6 @@ public class Model {
 		Initializer init = new Initializer();
 		this.states = init.initializeStates(men, women);
 	}
-	
-	//TODO Queries for knowledge in the model?
 	
 	
 	// Getters and setters

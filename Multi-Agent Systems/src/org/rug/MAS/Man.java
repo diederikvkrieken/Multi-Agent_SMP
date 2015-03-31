@@ -29,5 +29,13 @@ public class Man extends Person {
 		super(name);
 	}
 	
+	/**
+	 * Simulates a proposal by this bold guy.
+	 * @return Woman he proposes to.
+	 */
+	public String propose() {
+		this.preferences.counter++;
+		return this.preferences.preferences[this.preferences.counter-1];
+	}
 
 }

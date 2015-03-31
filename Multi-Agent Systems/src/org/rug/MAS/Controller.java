@@ -24,6 +24,44 @@ public class Controller {
 		this.model = m;
 	}
 	
+	/* Actions here */
+	
+	/**
+	 * Simulates a public proposal by m.
+	 * @param m
+	 * @return True if the proposal was accepted, false otherwise.
+	 */
+	public boolean publicProposal(Man m) {
+		String hottie = m.propose();
+		for (Woman w : this.model.getWomen()) {
+			if (w.getName().equals(hottie)) {
+				if (w.ponder(m.getName())) {
+					// Accepted proposal, edit current state.
+					//TODO edit current state
+					//TODO update knowledge
+					return true;
+				} else {
+					// Rejected proposal
+					//TODO update knowledge
+				}
+			}
+		}
+		return false;
+	}
+	
+	// Stub for a private proposal
+	public boolean privateProposal(Man m) {
+		String hottie = m.propose();
+		for (Woman w : this.model.getWomen()) {
+			if (w.getName().equals(hottie)) {
+				// Woman proposed to
+			}
+		}
+		return false;
+	}
+	
+	/* Queries here */
+	
 	/**
 	 * Validates a relation to be stable or not.
 	 * This is realized by checking whether the engagement

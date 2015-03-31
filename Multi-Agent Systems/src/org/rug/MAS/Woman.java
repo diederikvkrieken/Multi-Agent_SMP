@@ -30,7 +30,7 @@ public class Woman extends Person {
 	}
 
 	/**
-	 * Simulates the woman considering a proposal by proposer.
+	 * Simulates the beautiful princess considering a proposal by proposer.
 	 * @param proposer
 	 * @return True if proposal is accepted, false otherwise.
 	 */

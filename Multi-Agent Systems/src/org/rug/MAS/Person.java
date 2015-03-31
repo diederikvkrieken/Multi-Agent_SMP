@@ -113,6 +113,15 @@ public abstract class Person {
 		}
 	}
 	
+	/**
+	 * A person equals another if they have the same name.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Person && ((Person) obj).getName().equals(this.name)) return true;
+		return false;
+	}
+	
 	// Getters and setters
 	public String getName() {
 		return this.name;
@@ -125,4 +134,5 @@ public abstract class Person {
 	public void setPreferences(String[] pref) {
 		this.preferences.preferences = pref;
 	}
+	
 }

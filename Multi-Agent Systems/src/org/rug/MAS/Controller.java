@@ -37,12 +37,17 @@ public class Controller {
 			if (w.getName().equals(hottie)) {
 				if (w.ponder(m.getName())) {
 					// Accepted proposal, edit current state.
-					//TODO edit current state
-					//TODO update knowledge
+					Man sod = this.model.updateCurrentState(new Engagement(m, w));
+//					if (sod.equals(m)) {
+//						// New engagement
+//					} else {
+//						// Broken off
+//					}
+					//TODO update knowledge, add new guy to top of the list?
 					return true;
 				} else {
 					// Rejected proposal
-					//TODO update knowledge
+					//TODO update knowledge, add new guy to bottom of the list?
 				}
 			}
 		}

@@ -79,6 +79,28 @@ public class Model {
 		this.states = init.initializeStates(men, women);
 	}
 	
+	/**
+	 * Updates the current state with a new engagement r.
+	 * This may either break off a previous engagement, or add a new one.
+	 * @param r
+	 * @return The man dumped if a break occurred, otherwise the man currently engaged. 
+	 */
+	public Man updateCurrentState(Engagement r) {
+		Man poorSod = r.getMan();	// Man who was or is engaged
+		// Check whether woman was already engaged
+		for (Engagement e : this.currentState.getEngagements()) {
+			if (e == null) {
+				// Not engaged yet, add engagement
+				e = r;
+			}
+			if (e.isEngaged(r.getWoman().getName())) {
+				// Already engaged, break off engagement
+				poorSod = e.getMan();
+				e = r;
+			}
+		}
+		return poorSod;
+	}
 	
 	// Getters and setters
 	public ArrayList<ArrayList<State>> getStates() {

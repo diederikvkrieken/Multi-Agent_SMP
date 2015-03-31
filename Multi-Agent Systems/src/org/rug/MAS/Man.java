@@ -15,11 +15,13 @@ public class Man extends Person {
 	public Man(String name, String[] pref, State[] states) {
 		// TODO Auto-generated constructor stub
 		super(name, pref, states);
+		this.preferences.counter = 0;
 	}
 	
 	public Man(String name, String[] pref) {
 		// TODO Auto-generated constructor stub
 		super(name, pref);
+		this.preferences.counter = 0;
 	}
 	
 	public Man(String name) {

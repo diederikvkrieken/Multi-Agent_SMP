@@ -98,13 +98,13 @@ public class Initializer {
 			mames.add(m.getName());
 			// Shuffle preferences
 			Collections.shuffle(wames);
-			m.preferences = wames.toArray(new String[wames.size()]);
+			m.setPreferences(wames.toArray(new String[wames.size()]));
 			res.add(m);
 		}
 		for (Woman w : women) {
 			// Shuffle preferences
 			Collections.shuffle(mames);
-			w.preferences = mames.toArray(new String[mames.size()]);
+			w.setPreferences(mames.toArray(new String[mames.size()]));
 			res.add(w);
 		}
 		return res.toArray(new Person[res.size()]);

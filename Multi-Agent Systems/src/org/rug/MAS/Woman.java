@@ -15,14 +15,18 @@ public class Woman extends Person {
 	public Woman(String name, String[] pref, State[] states) {
 		// TODO Auto-generated constructor stub
 		super(name, pref, states);
+		this.preferences.counter = pref.length-1;
 	}
-	public Woman(String name) {
-		// TODO Auto-generated constructor stub
-		super(name);
-	}
+	
 	public Woman(String name, String[] pref) {
 		// TODO Auto-generated constructor stub
 		super(name, pref);
+		this.preferences.counter = pref.length-1;
+	}
+	
+	public Woman(String name) {
+		// TODO Auto-generated constructor stub
+		super(name);
 	}
 
 }

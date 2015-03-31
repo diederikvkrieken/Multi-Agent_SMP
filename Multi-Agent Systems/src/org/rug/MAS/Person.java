@@ -19,8 +19,11 @@ public abstract class Person {
 	
 	/**
 	 * A list of personal preferences, based on names.
+	 * The counter is prominently for the men,
+	 * indicating who to propose to next.
+	 * For women it slides the other way around, but it is not useful (yet).
 	 */
-	protected String[] preferences;
+	protected Preferences preferences;
 	
 	/**
 	 * Inner class for other preferences,
@@ -28,7 +31,7 @@ public abstract class Person {
 	 * @author Diederik, Sebastiaan & Pieter
 	 *
 	 */
-	protected class OtherPref {
+	protected class Preferences {
 		public String[] preferences;
 		public int counter;
 	}
@@ -36,12 +39,12 @@ public abstract class Person {
 	/**
 	 * Lists of preferences of proposers.
 	 */
-	protected HashMap<String, OtherPref> malePref;
+	protected HashMap<String, Preferences> malePref;
 	
 	/**
 	 * Lists of preferences of mistress.
 	 */
-	protected HashMap<String, OtherPref> femalePref;
+	protected HashMap<String, Preferences> femalePref;
 	
 	/**
 	 * States considered possible by this person.
@@ -57,17 +60,26 @@ public abstract class Person {
 	 */
 	public Person(String name, String[] preferences, State[] states) {
 		this.name = name;
-		this.preferences = preferences;
+		initPref(preferences);
 		this.states = states;
 	}
 	
 	public Person(String name, String[] preferences) {
 		this.name = name;
-		this.preferences = preferences;
+		initPref(preferences);
 	}
 	
 	public Person(String name) {
 		this.name = name;
+	}
+	
+	/**
+	 * Makes a Preferences object out of a list of names. 
+	 * @param pref
+	 */
+	private void initPref(String[] pref) {
+		this.preferences = new Preferences();
+		this.preferences.preferences = pref;
 	}
 	
 	/**
@@ -78,11 +90,11 @@ public abstract class Person {
 	 */
 	public void initOtherPref(Man[] suitors, Woman[] danzels) {
 		// Make lists for all men
-		this.malePref = new HashMap<String, OtherPref>();
+		this.malePref = new HashMap<String, Preferences>();
 		for (Man m : suitors) {
 			if (!m.getName().equals(this.name)) {
 				// Do not need own preferences
-				OtherPref pref = new OtherPref();
+				Preferences pref = new Preferences();
 				pref.preferences = m.getPreferences();
 				pref.counter = 0;
 				this.malePref.put(m.getName(), pref);
@@ -90,11 +102,11 @@ public abstract class Person {
 		}
 		
 		// Make lists for all women
-		this.femalePref = new HashMap<String, OtherPref>();
+		this.femalePref = new HashMap<String, Preferences>();
 		for (Woman w : danzels) {
 			if (!w.getName().equals(this.name)) {
 				// Do not need own preferences
-				OtherPref pref = new OtherPref();
+				Preferences pref = new Preferences();
 				pref.preferences = w.getPreferences();
 				pref.counter = 0;
 				this.femalePref.put(w.getName(), pref);
@@ -108,6 +120,10 @@ public abstract class Person {
 	}
 	
 	public String[] getPreferences() {
-		return this.preferences;
+		return this.preferences.preferences;
+	}
+	
+	public void setPreferences(String[] pref) {
+		this.preferences.preferences = pref;
 	}
 }

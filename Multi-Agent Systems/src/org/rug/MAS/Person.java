@@ -151,7 +151,10 @@ public abstract class Person {
 	public void refused(String target, String name) {
 		Preferences tpref = this.femalePref.get(target);
 		for (int i = tpref.counter; i < tpref.preferences.length; i++) {
-			if (tpref.preferences[i] == null) tpref.preferences[i] = name;
+			if (tpref.preferences[i] == null) {
+				tpref.preferences[i] = name;
+				break;
+			}
 		}
 	}
 	
@@ -160,7 +163,12 @@ public abstract class Person {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Person && ((Person) obj).getName().equals(this.name)) return true;
+		if (obj instanceof Person) {
+			if (((Person) obj).getName().equals(this.name)) return true;
+		}
+		if (obj instanceof String) {
+			if (((String) obj).equals(this.name)) return true;
+		}
 		return false;
 	}
 	

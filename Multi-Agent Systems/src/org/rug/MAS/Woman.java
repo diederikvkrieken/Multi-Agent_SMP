@@ -28,6 +28,17 @@ public class Woman extends Person {
 		// TODO Auto-generated constructor stub
 		super(name);
 	}
+	
+	/**
+	 * Override of superclass initOtherPref. Also adapts own counter.
+	 * (Required because it is not known sooner how many couples there are)  
+	 */
+	@Override
+	public void initOtherPref(Man[] suitors, Woman[] danzels) {
+		// TODO Auto-generated method stub
+		super.initOtherPref(suitors, danzels);
+		this.preferences.counter = suitors.length;
+	}
 
 	/**
 	 * Simulates the beautiful princess considering a proposal by proposer.

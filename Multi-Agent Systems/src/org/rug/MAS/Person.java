@@ -25,8 +25,8 @@ public abstract class Person {
 	protected Preferences preferences;
 	
 	/**
-	 * Inner class for other preferences,
-	 * holding preferences and a counter.
+	 * Inner class for preferences,
+	 * holding a list of preferences and a counter.
 	 * @author Diederik, Sebastiaan & Pieter
 	 *
 	 */
@@ -110,6 +110,48 @@ public abstract class Person {
 				pref.counter = 0;
 				this.femalePref.put(w.getName(), pref);
 			}
+		}
+	}
+	
+	/**
+	 * Adds name to the top of target's list and increases counter.
+	 * Called if target accepts name's proposal. 
+	 * @param target
+	 * @param name
+	 */
+	public void topPref(String target, String name) {
+		Preferences tpref = this.femalePref.get(target);
+		// Edit tpref
+		for (int i = tpref.preferences.length-1; i > 0; i++) {
+			// Shuffle everybody down by one
+			tpref.preferences[i] = tpref.preferences[i-1];
+		}
+		tpref.preferences[0] = name;
+		tpref.counter++;
+	}
+	
+	/**
+	 * Adds name at the place of counter and increments it.
+	 * Called after target proposes.
+	 * @param target
+	 * @param name
+	 */
+	public void nextPref(String target, String name) {
+		Preferences tpref = this.malePref.get(target);
+		tpref.preferences[tpref.counter] = name;
+		tpref.counter++;
+	}
+	
+	/**
+	 * Puts name on bottom of target's list.
+	 * Called if target refused name's proposal.
+	 * @param target
+	 * @param name
+	 */
+	public void refused(String target, String name) {
+		Preferences tpref = this.femalePref.get(target);
+		for (int i = 0; i < tpref.preferences.length; i++) {
+			
 		}
 	}
 	

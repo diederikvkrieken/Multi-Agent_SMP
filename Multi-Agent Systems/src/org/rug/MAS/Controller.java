@@ -33,6 +33,15 @@ public class Controller {
 	 */
 	public boolean publicProposal(Man m) {
 		String hottie = m.propose();
+		// Update with knowledge that this woman is next preference
+		for (Man man : this.model.getMen()) {
+			if (!m.equals(man)) {
+				man.
+			}
+		}
+		for (Woman w : this.model.getWomen()) {
+			
+		}
 		for (Woman w : this.model.getWomen()) {
 			if (w.getName().equals(hottie)) {
 				if (w.ponder(m.getName())) {

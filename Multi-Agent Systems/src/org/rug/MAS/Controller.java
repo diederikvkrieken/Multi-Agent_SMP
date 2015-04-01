@@ -32,6 +32,16 @@ public class Controller {
 		for (Man m : this.model.getMen()) {
 			publicProposal(m);
 		}
+		System.out.println("Do we have a stable marriage? " + stableMarriage());
+		while (!stableMarriage()) {
+			// Another round, make single men propose
+			for (Man m : this.model.getMen()) {
+				if (!this.model.currentState().isEngaged(m.getName())) {
+					publicProposal(m);
+				}
+			}
+			System.out.println("Do we have a stable marriage? " + stableMarriage());
+		}
 	}
 	
 	/* Actions here */
@@ -65,10 +75,10 @@ public class Controller {
 //					}
 					// Update knowledge that this man is most preferred
 					for (Man man : this.model.getMen()) {
-						if (!m.equals(man)) man.nextPref(m.getName(), hottie);
+						if (!m.equals(man)) man.topPref(hottie, m.getName());
 					}
 					for (Woman chicky : this.model.getWomen()) {
-						if (!chicky.equals(hottie)) chicky.nextPref(m.getName(), hottie);
+						if (!chicky.equals(hottie)) chicky.topPref(hottie, m.getName());
 					}
 					return true;
 				} else {
@@ -98,6 +108,23 @@ public class Controller {
 	}
 	
 	/* Queries here */
+	
+	/**
+	 * Checks whether the model yielded a stable marriage.
+	 * This is done by checking whether there are n engagements in the current state.
+	 * NOTE: This assumes the model can only get into such a state if it is stable.
+	 * @return True if all engagements are stable, false otherwise.
+	 */
+	public boolean stableMarriage() {
+		// Check whether currentState contains as much engagements as possible
+		State current = this.model.currentState();
+		Engagement[] eng = current.getEngagements();
+		for (Engagement e : eng) {
+			if (e == null) return false;	// empty engagement
+		}
+		// As many engagements in eng as possible
+		return true;
+	}
 	
 	/**
 	 * Validates a relation to be stable or not.

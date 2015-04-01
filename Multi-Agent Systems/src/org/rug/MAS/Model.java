@@ -88,15 +88,18 @@ public class Model {
 	public Man updateCurrentState(Engagement r) {
 		Man poorSod = r.getMan();	// Man who was or is engaged
 		// Check whether woman was already engaged
-		for (Engagement e : this.currentState.getEngagements()) {
-			if (e == null) {
+		Engagement[] eng = this.currentState.getEngagements();
+		for (int i = 0; i < eng.length; i++) {
+			if (eng[i] == null) {
 				// Not engaged yet, add engagement
-				e = r;
+				eng[i] = r;
+				break;
 			}
-			if (e.isEngaged(r.getWoman().getName())) {
+			if (eng[i].isEngaged(r.getWoman().getName())) {
 				// Already engaged, break off engagement
-				poorSod = e.getMan();
-				e = r;
+				poorSod = eng[i].getMan();
+				eng[i] = r;
+				break;
 			}
 		}
 		return poorSod;
@@ -105,6 +108,10 @@ public class Model {
 	// Getters and setters
 	public ArrayList<ArrayList<State>> getStates() {
 		return this.states;
+	}
+	
+	public State currentState() {
+		return this.currentState;
 	}
 	
 	public Man[] getMen() {

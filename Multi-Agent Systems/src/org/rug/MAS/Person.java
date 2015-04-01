@@ -94,7 +94,7 @@ public abstract class Person {
 			if (!m.getName().equals(this.name)) {
 				// Do not need own preferences
 				Preferences pref = new Preferences();
-				pref.preferences = new String[suitors.length-1];
+				pref.preferences = new String[suitors.length];
 				pref.counter = 0;
 				this.malePref.put(m.getName(), pref);
 			}
@@ -106,7 +106,7 @@ public abstract class Person {
 			if (!w.getName().equals(this.name)) {
 				// Do not need own preferences
 				Preferences pref = new Preferences();
-				pref.preferences = new String[danzels.length-1];
+				pref.preferences = new String[danzels.length];
 				pref.counter = 0;
 				this.femalePref.put(w.getName(), pref);
 			}
@@ -122,7 +122,7 @@ public abstract class Person {
 	public void topPref(String target, String name) {
 		Preferences tpref = this.femalePref.get(target);
 		// Edit tpref
-		for (int i = tpref.preferences.length-1; i > 0; i++) {
+		for (int i = tpref.preferences.length-1; i > 0; i--) {
 			// Shuffle everybody down by one
 			tpref.preferences[i] = tpref.preferences[i-1];
 		}

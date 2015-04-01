@@ -164,8 +164,7 @@ public class SMP {
 	        System.out.print("next!\n");
 		}
 		
-		//
-		
+		ctrl.runSimulation();
 
 		//for (int i = 0; i < ((CharSequence) layer).length(); i++) {
 		//	System.out.println(layer.get(i));

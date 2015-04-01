@@ -24,6 +24,16 @@ public class Controller {
 		this.model = m;
 	}
 	
+	/**
+	 * The big method to rule them all...
+	 */
+	public void runSimulation() {
+		// Let every man propose
+		for (Man m : this.model.getMen()) {
+			publicProposal(m);
+		}
+	}
+	
 	/* Actions here */
 	
 	/**
@@ -32,16 +42,17 @@ public class Controller {
 	 * @return True if the proposal was accepted, false otherwise.
 	 */
 	public boolean publicProposal(Man m) {
+		// m proposes
 		String hottie = m.propose();
 		// Update with knowledge that this woman is next preference
 		for (Man man : this.model.getMen()) {
-			if (!m.equals(man)) {
-				man.
-			}
+			if (!m.equals(man)) man.nextPref(m.getName(), hottie);
 		}
 		for (Woman w : this.model.getWomen()) {
-			
+			if (!w.equals(hottie)) w.nextPref(m.getName(), hottie);
 		}
+		
+		// hottie decides to accept or not
 		for (Woman w : this.model.getWomen()) {
 			if (w.getName().equals(hottie)) {
 				if (w.ponder(m.getName())) {
@@ -52,11 +63,23 @@ public class Controller {
 //					} else {
 //						// Broken off
 //					}
-					//TODO update knowledge, add new guy to top of the list?
+					// Update knowledge that this man is most preferred
+					for (Man man : this.model.getMen()) {
+						if (!m.equals(man)) man.nextPref(m.getName(), hottie);
+					}
+					for (Woman chicky : this.model.getWomen()) {
+						if (!chicky.equals(hottie)) chicky.nextPref(m.getName(), hottie);
+					}
 					return true;
 				} else {
 					// Rejected proposal
-					//TODO update knowledge, add new guy to bottom of the list?
+					// Update knowledge that this man is not preferred
+					for (Man man : this.model.getMen()) {
+						if (!m.equals(man)) man.refused(hottie, m.getName());
+					}
+					for (Woman chicky : this.model.getWomen()) {
+						if (!chicky.equals(hottie)) chicky.refused(hottie, m.getName());
+					}
 				}
 			}
 		}

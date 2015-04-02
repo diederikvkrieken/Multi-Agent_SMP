@@ -182,7 +182,6 @@ public abstract class Person {
 	}
 	
 	public void setPreferences(String[] pref) {
-		System.out.println("test");
 		this.initPref(pref);
 		//this.preferences.preferences = pref;
 	}

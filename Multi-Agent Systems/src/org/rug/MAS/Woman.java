@@ -46,6 +46,7 @@ public class Woman extends Person {
 	 * @return True if proposal is accepted, false otherwise.
 	 */
 	public boolean ponder(String proposer) {
+		System.out.println(this.name + ": Hmm, shall I accept " + proposer + "'s proposal?");
 		int priority = this.preferences.preferences.length;	// Rank of proposer
 		for (int idx = 0; idx < this.preferences.preferences.length; idx++) {
 			if (this.preferences.preferences[idx].equals(proposer)) {
@@ -54,11 +55,25 @@ public class Woman extends Person {
 				break;
 			}
 		}
+		// Print to whom this woman is engaged
+		if (this.preferences.counter >= this.preferences.preferences.length) {
+			// Not engaged yet
+			System.out.println("Well, I am still single...");
+		} else {
+			System.out.println("I am currently engaged to " + this.preferences.preferences[this.preferences.counter] +
+					", who is my #" + this.preferences.counter+1 + " ranked man.");
+		}
+		
+		// If proposer is ranked higher than current, accept, otherwise reject 
 		if (priority < this.preferences.counter) {
 			// Oooh handsome.. update counter and accept
 			this.preferences.counter = priority;
+			System.out.println("So I will definitely accept " + proposer + "'s proposal, who is ranked #"
+					+ priority++ + "!\n");
 			return true;
 		}
+		System.out.println(this.preferences.preferences[this.preferences.counter] + " is soooo handsome..."
+				+ "I despise the thought of being with " + proposer + ", who is just my #" + priority++ + "!\n");
 		return false;	// Reject proposal
 	}
 }

@@ -135,7 +135,7 @@ public class Initializer {
 	 * @return List of states in the layer of depth n.
 	 */
 	private ArrayList<State> statesRec(ArrayList<ArrayList<State>> comp, Man[] men, Woman[] women, int n) {
-		System.out.println("Recursive call with n = " + n);
+		//System.out.println("Recursive call with n = " + n);
 		// Base cases
 		if (n < 1) {
 			// Zeroth layer, contains only one state

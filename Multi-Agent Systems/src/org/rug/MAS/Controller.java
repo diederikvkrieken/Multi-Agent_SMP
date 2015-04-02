@@ -54,7 +54,10 @@ public class Controller {
 	public boolean publicProposal(Man m) {
 		// m proposes
 		String hottie = m.propose();
+		System.out.println(m.getName() + " publicly proposes to " + hottie);
 		// Update with knowledge that this woman is next preference
+		System.out.println("That must mean that " + hottie +
+				" is the next most preferred woman of " + m.getName());
 		for (Man man : this.model.getMen()) {
 			if (!m.equals(man)) man.nextPref(m.getName(), hottie);
 		}
@@ -67,6 +70,9 @@ public class Controller {
 			if (w.getName().equals(hottie)) {
 				if (w.ponder(m.getName())) {
 					// Accepted proposal, edit current state.
+					System.out.println(hottie + " accepted " + m.getName() + "'s proposal");
+					System.out.println("That must mean that " + hottie +
+							" prefers " + m.getName() + " over her current engagement.");
 					Man sod = this.model.updateCurrentState(new Engagement(m, w));
 //					if (sod.equals(m)) {
 //						// New engagement
@@ -83,6 +89,9 @@ public class Controller {
 					return true;
 				} else {
 					// Rejected proposal
+					System.out.println(hottie + " rejected " + m.getName() + "'s proposal");
+					System.out.println("That must mean that " + hottie +
+							" likes " + m.getName() + " less than her current engagement.");
 					// Update knowledge that this man is not preferred
 					for (Man man : this.model.getMen()) {
 						if (!m.equals(man)) man.refused(hottie, m.getName());

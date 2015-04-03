@@ -48,7 +48,7 @@ public abstract class Person {
 	/**
 	 * States considered possible by this person.
 	 */
-	protected State[] states;
+	//protected State[] states;
 	
 	/**
 	 * Constructor of a person, called by super().
@@ -57,11 +57,11 @@ public abstract class Person {
 	 * @param preferences
 	 * @param states
 	 */
-	public Person(String name, String[] preferences, State[] states) {
+	/*public Person(String name, String[] preferences, State[] states) {
 		this.name = name;
 		initPref(preferences);
 		this.states = states;
-	}
+	}*/
 	
 	public Person(String name, String[] preferences) {
 		this.name = name;

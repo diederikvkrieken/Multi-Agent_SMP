@@ -12,11 +12,11 @@ public class Woman extends Person {
 	/**
 	 * Constructor for a woman.
 	 */
-	public Woman(String name, String[] pref, State[] states) {
+	/*public Woman(String name, String[] pref, State[] states) {
 		// TODO Auto-generated constructor stub
 		super(name, pref, states);
 		this.preferences.counter = pref.length;
-	}
+	}*/
 	
 	public Woman(String name, String[] pref) {
 		// TODO Auto-generated constructor stub

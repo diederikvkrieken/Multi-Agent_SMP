@@ -11,12 +11,13 @@ public class Man extends Person {
 
 	/**
 	 * Constructor for a man.
+	 * State constructor not used in this simulation, but might be used in further research
 	 */
-	public Man(String name, String[] pref, State[] states) {
+	/*public Man(String name, String[] pref, State[] states) {
 		// TODO Auto-generated constructor stub
 		super(name, pref, states);
 		this.preferences.counter = 0;
-	}
+	}*/
 	
 	public Man(String name, String[] pref) {
 		// TODO Auto-generated constructor stub

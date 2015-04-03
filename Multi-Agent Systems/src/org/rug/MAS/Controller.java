@@ -32,7 +32,7 @@ public class Controller {
 		for (Man m : this.model.getMen()) {
 			privateProposal(m);
 		}
-		System.out.println("Do we have a stable marriage? " + stableMarriage());
+		System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
 		while (!stableMarriage()) {
 			// Another round, make single men propose
 			for (Man m : this.model.getMen()) {
@@ -40,7 +40,7 @@ public class Controller {
 					privateProposal(m);
 				}
 			}
-			System.out.println("Do we have a stable marriage? " + stableMarriage());
+			System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class Controller {
 					// Accepted proposal, edit current state.
 					System.out.println(hottie + " accepted " + m.getName() + "'s proposal");
 					System.out.println("That must mean that " + hottie +
-							" prefers " + m.getName() + " over her current engagement.");
+							" prefers " + m.getName() + " over her current engagement.\n");
 					Man sod = this.model.updateCurrentState(new Engagement(m, w));
 //					if (sod.equals(m)) {
 //						// New engagement
@@ -90,7 +90,7 @@ public class Controller {
 					// Rejected proposal
 					System.out.println(hottie + " rejected " + m.getName() + "'s proposal");
 					System.out.println("That must mean that " + hottie +
-							" likes " + m.getName() + " less than her current engagement.");
+							" likes " + m.getName() + " less than her current engagement.\n");
 					// Update knowledge that this man is not preferred
 					for (Man man : this.model.getMen()) {
 						man.refused(hottie, m.getName());

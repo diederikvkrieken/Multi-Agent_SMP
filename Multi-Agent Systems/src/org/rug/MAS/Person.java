@@ -48,21 +48,22 @@ public abstract class Person {
 	
 	/**
 	 * States considered possible by this person.
+	 * Not used in this simulation, but might be used in further research
 	 */
-	protected State[] states;
+	//protected State[] states;
 	
 	/**
 	 * Constructor of a person, called by super().
-	 * 
+	 * State constructor not used in this simulation, but might be used in further research
 	 * @param name
 	 * @param preferences
 	 * @param states
 	 */
-	public Person(String name, String[] preferences, State[] states) {
+	/*public Person(String name, String[] preferences, State[] states) {
 		this.name = name;
 		initPref(preferences);
 		this.states = states;
-	}
+	}*/
 	
 	public Person(String name, String[] preferences) {
 		this.name = name;

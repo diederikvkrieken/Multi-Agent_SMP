@@ -138,7 +138,8 @@ public class Controller {
 				if (w.ponder(m.getName())) {
 					// Accepted proposal, edit current state.
 					System.out.println(hottie + " accepted " + m.getName() + "'s proposal");
-					System.out.println("So everybody now knows the hussy secretly preferred " + m.getName()+"\n");
+					System.out.println("So everybody now knows the hussy secretly preferred " + m.getName()
+							+ ", on top of his secret proposal\n");
 					Man sod = this.model.updateCurrentState(new Engagement(m, w));
 //					if (sod.equals(m)) {
 //						// New engagement

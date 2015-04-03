@@ -62,7 +62,7 @@ public class Woman extends Person {
 			System.out.println("Well, I am still single...");
 		} else {
 			System.out.println("I am currently engaged to " + this.preferences.preferences[this.preferences.counter] +
-					", who is my #" + (this.preferences.counter) + " ranked man.");
+					", who is my #" + (this.preferences.counter+1) + " ranked man.");
 		}
 		
 		// If proposer is ranked higher than current, accept, otherwise reject 
@@ -70,11 +70,11 @@ public class Woman extends Person {
 			// Oooh handsome.. update counter and accept
 			this.preferences.counter = priority;
 			System.out.println("So I will definitely accept " + proposer + "'s proposal, who is ranked #"
-					+ priority++ + "!\n");
+					+ (++priority) + "!\n");
 			return true;
 		}
 		System.out.println(this.preferences.preferences[this.preferences.counter] + " is soooo handsome..."
-				+ "I despise the thought of being with " + proposer + ", who is just my #" + priority++ + "!\n");
+				+ " I despise the thought of being with " + proposer + ", who is just my #" + (++priority) + "!\n");
 		return false;	// Reject proposal
 	}
 }

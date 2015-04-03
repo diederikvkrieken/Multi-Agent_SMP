@@ -31,7 +31,7 @@ public class SMP {
 		boolean init = true;	// True as long as initialization is still going on
 		int num = 0;			// SMP n
 		boolean printstates = false; // If all possible states should be printed. Mostly for debugging.
-		boolean privatetalk = false;
+		boolean privatetalk = true;
 		while (init) {
 			System.out.println("For how many pairs (n) would you like to simulate the Stable Marriage Problem? Max 7 pairs: running 7 pairs exceeds 10 min.");
 			try {

@@ -32,7 +32,7 @@ public class Controller {
 		for (Man m : this.model.getMen()) {
 			publicProposal(m);
 		}
-		System.out.println("Do we have a stable marriage? " + stableMarriage());
+		System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
 		while (!stableMarriage()) {
 			// Another round, make single men propose
 			for (Man m : this.model.getMen()) {
@@ -40,7 +40,7 @@ public class Controller {
 					publicProposal(m);
 				}
 			}
-			System.out.println("Do we have a stable marriage? " + stableMarriage());
+			System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
 		}
 	}
 	

@@ -32,7 +32,7 @@ public class SMP {
 		int num = 0;			// SMP n
 		boolean printstates = false; // If all possible states should be printed. Mostly for debugging.
 		while (init) {
-			System.out.println("For how many pairs (n) would you like to simulate the Stable Marriage Problem?");
+			System.out.println("For how many pairs (n) would you like to simulate the Stable Marriage Problem? Max 7 pairs: running 7 pairs exceeds 10 min.");
 			try {
 				num = Integer.parseInt(input.next());
 				if (num > 0 && num < 8) {	

@@ -25,12 +25,6 @@ public class SMP {
 	 */
 	public static void main(String[] args) {
 		// Shell for the stable marriage problem
-		Scanner input = new Scanner(System.in);
-		
-		//TODO Initialization of the problem
-		boolean init = true;	// True as long as initialization is still going on
-		String in;				// Holder for input string
-		int num;				// SMP n
 		/*while (init) {
 			System.out.println("For which n would you like to simulate the Stable Marriage Problem?");
 			try {
@@ -76,8 +70,27 @@ public class SMP {
 				System.out.println("Please input an integer between 1 and 10.");
 			}
 		}*/
-		num = 2;
+		Scanner input = new Scanner(System.in);
 		
+		//TODO Initialization of the problem
+		boolean init = true;	// True as long as initialization is still going on
+		String in;				// Holder for input string
+		int num = 0;				// SMP n
+		while (init) {
+			System.out.println("For how many pairs (n) would you like to simulate the Stable Marriage Problem?");
+			try {
+				num = Integer.parseInt(input.next());
+				if (num > 0 && num < 8) {	
+					// To account for men and women
+					System.out.println("Simulating for "+num+" pairs");
+					init =false;
+				}else{
+					System.out.println("Please input an integer between 1 and 8, more will be computationally impossible.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Please input an integer between 1 and 10.");
+			}
+		}
 		Model smp = new Model(num);
 		
 		Controller ctrl = new Controller(smp);

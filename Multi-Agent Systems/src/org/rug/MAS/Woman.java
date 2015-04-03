@@ -61,7 +61,7 @@ public class Woman extends Person {
 			System.out.println("Well, I am still single...");
 		} else {
 			System.out.println("I am currently engaged to " + this.preferences.preferences[this.preferences.counter] +
-					", who is my #" + this.preferences.counter+1 + " ranked man.");
+					", who is my #" + (this.preferences.counter) + " ranked man.");
 		}
 		
 		// If proposer is ranked higher than current, accept, otherwise reject 

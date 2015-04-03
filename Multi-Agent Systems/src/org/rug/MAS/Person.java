@@ -48,12 +48,13 @@ public abstract class Person {
 	
 	/**
 	 * States considered possible by this person.
+	 * Not used in this simulation, but might be used in further research
 	 */
 	//protected State[] states;
 	
 	/**
 	 * Constructor of a person, called by super().
-	 * 
+	 * State constructor not used in this simulation, but might be used in further research
 	 * @param name
 	 * @param preferences
 	 * @param states

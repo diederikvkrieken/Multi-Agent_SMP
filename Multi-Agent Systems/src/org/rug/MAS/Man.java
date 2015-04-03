@@ -11,6 +11,7 @@ public class Man extends Person {
 
 	/**
 	 * Constructor for a man.
+	 * State constructor not used in this simulation, but might be used in further research
 	 */
 	/*public Man(String name, String[] pref, State[] states) {
 		// TODO Auto-generated constructor stub

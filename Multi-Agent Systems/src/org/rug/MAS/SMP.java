@@ -83,9 +83,9 @@ public class SMP {
 				if (num > 0 && num < 8) {	
 					// To account for men and women
 					System.out.println("Simulating for "+num+" pairs");
-					init =false;
+					init = false;
 				}else{
-					System.out.println("Please input an integer between 1 and 8, more will be computationally impossible.");
+					System.out.println("Please input an integer between 1 and 8, more will be computationally impfeasible.");
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Please input an integer between 1 and 10.");
@@ -143,6 +143,8 @@ public class SMP {
 			//TODO if stable match, terminate
 			terminate = true;
 		}
+		
+		input.close();
 	}
 
 }

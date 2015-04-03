@@ -4,6 +4,7 @@
 package org.rug.MAS;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Abstract class representing involved people.
@@ -154,6 +155,48 @@ public abstract class Person {
 			if (tpref.preferences[i] == null) {
 				tpref.preferences[i] = name;
 				break;
+			}
+		}
+	}
+	
+	/* Queries here */
+	
+	/**
+	 * Makes a person look through its inferred preferences of men.
+	 * With public proposals, the order is guaranteed.
+	 * Only knowledge about the full order is stated.
+	 */
+	public void inferMalePref() {
+		// Iterate over all men
+		for (Map.Entry<String, Preferences> pep : this.femalePref.entrySet()) {
+			Preferences p = pep.getValue();	// Get inferred preferences
+			if (p.counter == p.preferences.length) {
+				// Certain about order until end of list, so knows exactly
+				System.out.println(this.name + ": I know exactly the order of " + pep.getKey() + "'s preferences!");
+			}
+		}
+	}
+	
+	/**
+	 * Makes a person look through its inferred preferences of women.
+	 * If it knows the top preference, or the exact order,
+	 * this knowledge is stated.
+	 */
+	public void inferTopPreference() {
+		// Iterate over all women
+		for (Map.Entry<String, Preferences> pep : this.femalePref.entrySet()) {
+			Preferences p = pep.getValue();	// Get inferred preferences
+			if (p.counter == p.preferences.length) {
+				// Certain about order until end of list, so knows exactly
+				System.out.println(this.name + ": I know exactly the order of " + pep.getKey() + "'s preferences!");
+			} else {
+				for (String name : p.preferences) {
+					// Iterate through preferences, if not full, terminate
+					if (name == null) return;
+				}
+				// Preferences is full, so definitely top one is top one
+				System.out.println(this.name + ": I know that " + pep.getKey()
+						+ " likes " + p.preferences[0] + " best!");
 			}
 		}
 	}

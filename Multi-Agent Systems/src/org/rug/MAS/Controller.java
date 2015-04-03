@@ -71,6 +71,7 @@ public class Controller {
 		// m proposes
 		String hottie = m.propose();
 		System.out.println(m.getName() + " publicly proposes to " + hottie);
+		boolean res = false;	// Result of proposal
 		// Update with knowledge that this woman is next preference
 		System.out.println("That must mean that " + hottie +
 				" is the next most preferred woman of " + m.getName());
@@ -101,7 +102,7 @@ public class Controller {
 					for (Woman chicky : this.model.getWomen()) {
 						if (!chicky.equals(hottie)) chicky.topPref(hottie, m.getName());
 					}
-					return true;
+					res = true;
 				} else {
 					// Rejected proposal
 					System.out.println(hottie + " rejected " + m.getName() + "'s proposal");
@@ -117,7 +118,7 @@ public class Controller {
 				}
 			}
 		}
-		return false;
+		return res;
 	}
 	
 	/**
@@ -144,12 +145,16 @@ public class Controller {
 //					} else {
 //						// Broken off
 //					}
-					// Update knowledge that this man is most preferred
+					// Update knowledge that this man proposed and is most preferred
 					for (Man man : this.model.getMen()) {
+						if (!m.equals(man)) man.nextPref(m.getName(), hottie);
 						man.topPref(hottie, m.getName());
 					}
 					for (Woman chicky : this.model.getWomen()) {
-						if (!chicky.equals(hottie)) chicky.topPref(hottie, m.getName());
+						if (!chicky.equals(hottie)) {
+							chicky.nextPref(m.getName(), hottie);
+							chicky.topPref(hottie, m.getName());
+						}
 					}
 					return true;
 				} else {

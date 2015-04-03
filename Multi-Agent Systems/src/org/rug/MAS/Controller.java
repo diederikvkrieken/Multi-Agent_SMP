@@ -33,7 +33,8 @@ public class Controller {
 			for (Man m : this.model.getMen()) {
 				privateProposal(m);
 			}
-			System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+			String s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+			System.out.println(s+"\n");
 			while (!stableMarriage()) {
 				// Another round, make single men propose
 				for (Man m : this.model.getMen()) {
@@ -41,13 +42,15 @@ public class Controller {
 						privateProposal(m);
 					}
 				}
-				System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+				s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+				System.out.println(s+"\n");
 			}
 		}else{
 			for (Man m : this.model.getMen()) {
 				publicProposal(m);
 			}
-			System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+			String s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+			System.out.println(s+"\n");
 			while (!stableMarriage()) {
 				// Another round, make single men propose
 				for (Man m : this.model.getMen()) {
@@ -55,7 +58,8 @@ public class Controller {
 						publicProposal(m);
 					}
 				}
-				System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+				s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+				System.out.println(s+"\n");
 			}
 		}
 	}

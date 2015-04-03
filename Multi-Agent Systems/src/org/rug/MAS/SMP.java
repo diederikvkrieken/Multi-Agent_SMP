@@ -30,28 +30,49 @@ public class SMP {
 		
 		boolean init = true;	// True as long as initialization is still going on
 		int num = 0;			// SMP n
+		String in;				// Holder for input string
 		boolean printstates = false; // If all possible states should be printed. Mostly for debugging.
-		boolean privatetalk = true;
+		boolean privatetalk = false;
 		while (init) {
 			System.out.println("For how many pairs (n) would you like to simulate the Stable Marriage Problem? Max 7 pairs: running 7 pairs exceeds 10 min.");
 			try {
 				num = Integer.parseInt(input.next());
 				if (num > 0 && num < 8) {	
-					// To account for men and women
 					System.out.println("Simulating for "+num+" pairs");
+					// Printing states?
+					System.out.println("Would you like all the possible states to be printed? (y/n)?");
+					in = input.next();
+					while (!(in.equals("y") || in.equals("n"))) {
+						System.out.println("Please specify your input as 'y' or 'n'.");
+						in = input.next();
+					}
+					if (in.equals("y")) {
+						printstates = true;
+					}
+					// Private or public? Default is public.
+					System.out.println("Would you like private or public announcements? (pr/pu)?");
+					in = input.next();
+					while (!(in.equals("pr") || in.equals("pu"))) {
+						System.out.println("Please specify your input as 'pr' for private or 'pu' for public announcements.");
+						in = input.next();
+					}
+					if (in.equals("pr")) {
+						privatetalk = true;
+					}
 					init = false;
 				}else{
 					System.out.println("Please input an integer between 1 and 8, more will be computationally impfeasible.");
 				}
 			} catch (NumberFormatException e) {
-				System.out.println("Please input an integer between 1 and 10.");
+				System.out.println("Please input an integer between 1 and 8.");
 			}
 		}
+		
 		Model smp = new Model(num);
 		
 		Controller ctrl = new Controller(smp); 
 		
-		System.out.print("The smp has: "+smp.getStates().size()+" layers.\n"); // print the amound of layers
+		System.out.print("\nThe smp has: "+smp.getStates().size()+" layers.\n"); // print the amound of layers
 		int l = 1; // placeholder to show which layer is being printed
 		ArrayList<ArrayList<State>> layer = smp.getStates();
 		Iterator<ArrayList<State>> iterator = layer.iterator();
@@ -71,9 +92,9 @@ public class SMP {
 	        l++;
 		}
 		if (privatetalk){
-			System.out.print("Running simulation with private talk!\n\n"); // print amount of engagement in this layer
+			System.out.print("\nRunning simulation with private talk!\n\n"); // print amount of engagement in this layer
 		}else{
-			System.out.print("Running simulation with public talk!\n\n"); // print amount of engagement in this layer
+			System.out.print("\nRunning simulation with public talk!\n\n"); // print amount of engagement in this layer
 		}
 		ctrl.runSimulation(privatetalk);	// Run the hard-coded simulation
 

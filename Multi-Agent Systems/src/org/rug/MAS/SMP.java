@@ -31,6 +31,7 @@ public class SMP {
 		boolean init = true;	// True as long as initialization is still going on
 		int num = 0;			// SMP n
 		boolean printstates = false; // If all possible states should be printed. Mostly for debugging.
+		boolean privatetalk = false;
 		while (init) {
 			System.out.println("For how many pairs (n) would you like to simulate the Stable Marriage Problem? Max 7 pairs: running 7 pairs exceeds 10 min.");
 			try {
@@ -69,8 +70,12 @@ public class SMP {
 	        }
 	        l++;
 		}
-		System.out.print("Runing simulation!\n\n"); // print amount of engagement in this layer
-		ctrl.runSimulation();	// Run the hard-coded simulation
+		if (privatetalk){
+			System.out.print("Running simulation with private talk!\n\n"); // print amount of engagement in this layer
+		}else{
+			System.out.print("Running simulation with public talk!\n\n"); // print amount of engagement in this layer
+		}
+		ctrl.runSimulation(privatetalk);	// Run the hard-coded simulation
 
 		input.close();
 	}

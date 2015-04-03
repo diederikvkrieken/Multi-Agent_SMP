@@ -27,20 +27,36 @@ public class Controller {
 	/**
 	 * The big method to rule them all...
 	 */
-	public void runSimulation() {
+	public void runSimulation(boolean privatetalk) {
 		// Let every man propose
-		for (Man m : this.model.getMen()) {
-			privateProposal(m);
-		}
-		System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
-		while (!stableMarriage()) {
-			// Another round, make single men propose
+		if (privatetalk){
 			for (Man m : this.model.getMen()) {
-				if (!this.model.currentState().isEngaged(m.getName())) {
-					privateProposal(m);
-				}
+				privateProposal(m);
 			}
 			System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+			while (!stableMarriage()) {
+				// Another round, make single men propose
+				for (Man m : this.model.getMen()) {
+					if (!this.model.currentState().isEngaged(m.getName())) {
+						privateProposal(m);
+					}
+				}
+				System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+			}
+		}else{
+			for (Man m : this.model.getMen()) {
+				publicProposal(m);
+			}
+			System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+			while (!stableMarriage()) {
+				// Another round, make single men propose
+				for (Man m : this.model.getMen()) {
+					if (!this.model.currentState().isEngaged(m.getName())) {
+						publicProposal(m);
+					}
+				}
+				System.out.println("Do we have a stable marriage? " + stableMarriage()+"\n");
+			}
 		}
 	}
 	

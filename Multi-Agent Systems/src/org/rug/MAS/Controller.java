@@ -30,14 +30,14 @@ public class Controller {
 	public void runSimulation() {
 		// Let every man propose
 		for (Man m : this.model.getMen()) {
-			publicProposal(m);
+			privateProposal(m);
 		}
 		System.out.println("Do we have a stable marriage? " + stableMarriage());
 		while (!stableMarriage()) {
 			// Another round, make single men propose
 			for (Man m : this.model.getMen()) {
 				if (!this.model.currentState().isEngaged(m.getName())) {
-					publicProposal(m);
+					privateProposal(m);
 				}
 			}
 			System.out.println("Do we have a stable marriage? " + stableMarriage());
@@ -61,13 +61,12 @@ public class Controller {
 		for (Man man : this.model.getMen()) {
 			if (!m.equals(man)) man.nextPref(m.getName(), hottie);
 		}
-		for (Woman w : this.model.getWomen()) {
-			if (!w.equals(hottie)) w.nextPref(m.getName(), hottie);
-		}
 		
 		// hottie decides to accept or not
 		for (Woman w : this.model.getWomen()) {
+			w.nextPref(m.getName(), hottie);	// Update knowledge in the meantime
 			if (w.getName().equals(hottie)) {
+				// Woman proposed to
 				if (w.ponder(m.getName())) {
 					// Accepted proposal, edit current state.
 					System.out.println(hottie + " accepted " + m.getName() + "'s proposal");
@@ -81,7 +80,7 @@ public class Controller {
 //					}
 					// Update knowledge that this man is most preferred
 					for (Man man : this.model.getMen()) {
-						if (!m.equals(man)) man.topPref(hottie, m.getName());
+						man.topPref(hottie, m.getName());
 					}
 					for (Woman chicky : this.model.getWomen()) {
 						if (!chicky.equals(hottie)) chicky.topPref(hottie, m.getName());
@@ -94,7 +93,7 @@ public class Controller {
 							" likes " + m.getName() + " less than her current engagement.");
 					// Update knowledge that this man is not preferred
 					for (Man man : this.model.getMen()) {
-						if (!m.equals(man)) man.refused(hottie, m.getName());
+						man.refused(hottie, m.getName());
 					}
 					for (Woman chicky : this.model.getWomen()) {
 						if (!chicky.equals(hottie)) chicky.refused(hottie, m.getName());
@@ -105,12 +104,45 @@ public class Controller {
 		return false;
 	}
 	
-	// Stub for a private proposal
+	/**
+	 * Simulates a private proposal by m.
+	 * @param m
+	 * @return True if the proposal was accepted, false otherwise.
+	 */
 	public boolean privateProposal(Man m) {
 		String hottie = m.propose();
+		System.out.println("Sly bastard " + m.getName() +
+				" whispers a proposal into " + hottie + "'s ear");
+		System.out.println("Only " + hottie + " now knows " + m.getName() + "'s next preference");
 		for (Woman w : this.model.getWomen()) {
 			if (w.getName().equals(hottie)) {
 				// Woman proposed to
+				w.nextPref(m.getName(), hottie);	// Update knowledge
+				if (w.ponder(m.getName())) {
+					// Accepted proposal, edit current state.
+					System.out.println(hottie + " accepted " + m.getName() + "'s proposal");
+					System.out.println("So everybody now knows the slut secretly preferred " + m.getName());
+					Man sod = this.model.updateCurrentState(new Engagement(m, w));
+//					if (sod.equals(m)) {
+//						// New engagement
+//					} else {
+//						// Broken off
+//					}
+					// Update knowledge that this man is most preferred
+					for (Man man : this.model.getMen()) {
+						man.topPref(hottie, m.getName());
+					}
+					for (Woman chicky : this.model.getWomen()) {
+						if (!chicky.equals(hottie)) chicky.topPref(hottie, m.getName());
+					}
+					return true;
+				} else {
+					// Rejected proposal
+					System.out.println(hottie + " rejected " + m.getName() + "'s proposal");
+					System.out.println("Unfortunately only the involved parties now know about this");
+					// Man now knows he is not preferred
+					m.refused(hottie, m.getName());
+				}
 			}
 		}
 		return false;

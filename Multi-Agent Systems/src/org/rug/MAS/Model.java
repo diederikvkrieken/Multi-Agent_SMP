@@ -92,7 +92,7 @@ public class Model {
 		for (int i = 0; i < eng.length; i++) {
 			if (eng[i] == null) {
 				// Not engaged yet, add engagement
-				eng[i] = r;
+				eng[i] = r; 
 				break;
 			}
 			if (eng[i].isEngaged(r.getWoman().getName())) {

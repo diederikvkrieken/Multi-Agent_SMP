@@ -48,7 +48,7 @@ public class SMP {
 		}
 		Model smp = new Model(num);
 		
-		Controller ctrl = new Controller(smp);
+		Controller ctrl = new Controller(smp); 
 		
 		System.out.print("The smp has: "+smp.getStates().size()+" layers.\n"); // print the amound of layers
 		int l = 1; // placeholder to show which layer is being printed

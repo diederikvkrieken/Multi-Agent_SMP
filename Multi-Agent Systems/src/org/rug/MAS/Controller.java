@@ -121,7 +121,7 @@ public class Controller {
 				if (w.ponder(m.getName())) {
 					// Accepted proposal, edit current state.
 					System.out.println(hottie + " accepted " + m.getName() + "'s proposal");
-					System.out.println("So everybody now knows the slut secretly preferred " + m.getName());
+					System.out.println("So everybody now knows the hussy secretly preferred " + m.getName()+"\n");
 					Man sod = this.model.updateCurrentState(new Engagement(m, w));
 //					if (sod.equals(m)) {
 //						// New engagement
@@ -139,7 +139,7 @@ public class Controller {
 				} else {
 					// Rejected proposal
 					System.out.println(hottie + " rejected " + m.getName() + "'s proposal");
-					System.out.println("Unfortunately only the involved parties now know about this");
+					System.out.println("Unfortunately only the involved parties now know about this.\n");
 					// Man now knows he is not preferred
 					m.refused(hottie, m.getName());
 				}

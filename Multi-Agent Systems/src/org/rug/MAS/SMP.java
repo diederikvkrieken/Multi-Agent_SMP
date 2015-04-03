@@ -40,7 +40,7 @@ public class SMP {
 					System.out.println("Simulating for "+num+" pairs");
 					init = false;
 				}else{
-					System.out.println("Please input an integer between 1 and 8, more will be computationally impossible.");
+					System.out.println("Please input an integer between 1 and 8, more will be computationally impfeasible.");
 				}
 			} catch (NumberFormatException e) {
 				System.out.println("Please input an integer between 1 and 10.");
@@ -71,6 +71,8 @@ public class SMP {
 		}
 		System.out.print("Runing simulation!\n\n"); // print amount of engagement in this layer
 		ctrl.runSimulation();	// Run the hard-coded simulation
+
+		input.close();
 	}
 
 }

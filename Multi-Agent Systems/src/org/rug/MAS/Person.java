@@ -34,6 +34,24 @@ public abstract class Person {
 	protected class Preferences {
 		public String[] preferences;
 		public int counter;
+		
+		/* (non-Javadoc)
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			// Print names of which the priority is certain
+			String res = "Certain:\n";
+			for (int idx = 0; idx < this.counter; idx++) {
+				if (this.preferences[idx] != null) res += this.preferences[idx] + "\n";
+			}
+			// Print names that might be out of order
+			res += "Uncertain:\n";
+			for (int idx = this.counter; idx < this.preferences.length; idx++) {
+				if (this.preferences[idx] != null) res += this.preferences[idx] + "\n";
+			}
+			return res;
+		}
 	}
 	
 	/**
@@ -161,6 +179,23 @@ public abstract class Person {
 	}
 	
 	/* Queries here */
+	
+	/**
+	 * Prints all inferred preferences.
+	 */
+	public void listAllPref() {
+		System.out.println(this.name + ": I know these preferences:");
+		// List male preferences
+		for (Map.Entry<String, Preferences> pref : this.malePref.entrySet()) {
+			System.out.println(pref.getKey() + " -");
+			System.out.println(pref.getValue());
+		}
+		// List female preferences
+		for (Map.Entry<String, Preferences> pref : this.femalePref.entrySet()) {
+			System.out.println(pref.getKey() + " -");
+			System.out.println(pref.getValue());
+		}
+	}
 	
 	/**
 	 * Makes a person look through its inferred preferences of men.

@@ -33,7 +33,7 @@ public class Controller {
 			for (Man m : this.model.getMen()) {
 				privateProposal(m);
 			}
-			String s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+			String s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunately no stable marriage yet.");
 			System.out.println(s+"\n");
 			while (!stableMarriage()) {
 				// Another round, make single men propose
@@ -42,14 +42,14 @@ public class Controller {
 						privateProposal(m);
 					}
 				}
-				s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+				s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunately no stable marriage yet.");
 				System.out.println(s+"\n");
 			}
 		}else{
 			for (Man m : this.model.getMen()) {
 				publicProposal(m);
 			}
-			String s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+			String s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunately no stable marriage yet.");
 			System.out.println(s+"\n");
 			while (!stableMarriage()) {
 				// Another round, make single men propose
@@ -58,9 +58,16 @@ public class Controller {
 						publicProposal(m);
 					}
 				}
-				s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunatly no stable marriage yet.");
+				s = (stableMarriage()? "Stable marriage achieved!!!!" : "Unfortunately no stable marriage yet.");
 				System.out.println(s+"\n");
 			}
+		}
+		// Let everyone display inferred preferences
+		for (Man m : this.model.getMen()) {
+			m.listAllPref();
+		}
+		for (Woman w : this.model.getWomen()) {
+			w.listAllPref();
 		}
 	}
 	
